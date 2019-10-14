@@ -1,4 +1,7 @@
-_site*
+_site
 .sass-cache
-.jekyll-metadata
-*backup/
+.directory
+Thumbs.db
+_drafts
+.ruby-version
+Gemfile.lock
