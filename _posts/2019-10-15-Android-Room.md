@@ -73,7 +73,7 @@ Below example is json response gives you nearby venues which are available on fo
       
 ```
 
-#### @Entity : 
+### @Entity : 
 Room creates a table for each class annotated with @Entity; the fields in the class correspond to columns in the table.
  
 Now how do you save above json response ? 
@@ -175,7 +175,7 @@ abstract class VenueDao {
 ```
 
 
-#### @Database
+### @Database
 To create database we need to define an abstract class that extends RoomDatabase. This class is annotated with @Database, lists of entities contained in the database, and the DAOs which access them. The database version has to be increased by 1, from the initial value.
 
 Below code snippet shows how to define your database class
@@ -197,7 +197,7 @@ abstract class AppDatabase : RoomDatabase() {
 }
 ```
 
-####  @Embedded
+###  @Embedded
 
 When you annotated field as Embedded, all of those nested field of annotated field will be created as a separate column in the same Entity. 
 
@@ -226,7 +226,7 @@ data class Venue(
 }
 
 ```
-#### foreignKeys
+### foreignKeys
 
 if suppose, your field contains nested list OR only list. we save this data field either by foreign key relation OR by type converters. 
 
@@ -297,7 +297,7 @@ data class VenuePhotos(
 
 ```
 
-#### @TypeConverters
+### @TypeConverters
 
 Sometimes we may need to store object as is in one column rather than storing them in separate column as in case of @Embedded, so Type converters comes to the rescue.
 
