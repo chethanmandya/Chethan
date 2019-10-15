@@ -37,7 +37,7 @@ author:
   type      : # "person" (default), "organization"
   name      : Your Name
   url       :
-  avatar    : https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/20994269_1591050357624030_85112936657972989_n.jpg?_nc_cat=101&_nc_oc=AQkDyllZLMrpzfmXfGFykRfeAFL9y6UtwNr2lQR6cZ4Uy4tDDudUXmHEXsclc-gLH4E&_nc_ht=scontent-ams4-1.xx&oh=c5f8ab8b1312211a99bf25968e241107&oe=5E1F5BC8
+  avatar    : 
   bio       : I am an amazing person.
   email     :
   facebook  : chethan.mandya.5
@@ -91,12 +91,12 @@ mathjax_autoNumber: # false (default), true
 mermaid: # false (default), true
 
 ## Chart
-chart: # false (default), true
+chart: true
 
 
 ## => Paginate
 ##############################
-paginate: 8
+paginate: 10
 paginate_path: /page:num # don't change this unless for special need
 
 
@@ -108,7 +108,7 @@ sources: # bootcdn (default), unpkg
 ## => Sharing
 ##############################
 sharing:
-  provider: false # false (default), "addtoany", "addthis", "custom"
+  provider: addtoany
 
   ## AddThis
   addthis:
@@ -118,7 +118,7 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: disqus
 
   ## Disqus
   disqus:
