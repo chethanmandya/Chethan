@@ -7,7 +7,6 @@ article_header:
 ---
 
 
-# Android-Architecture-Component
 A sample project to demonstrate Android Architecture Component libraries (Room, ViewModel, LiveData and LifeCycle) 
 
 It is a Note taking app, built using the Android Architecture Component libraries (Room, ViewModel, LiveData and LifeCycle), App data will be stored in an SQLite database and supports for insert, read, update and delete operations. For this I have followed the official recommendations from the "Guide to App Architecture" (link below).
