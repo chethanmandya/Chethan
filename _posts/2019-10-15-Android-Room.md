@@ -1,6 +1,6 @@
 ---
 title: Android Room
-tags: Android Architecture Components
+tags: AndroidArchitectureComponents, Android Room
 article_header:
   type: cover
   image:
