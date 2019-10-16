@@ -213,6 +213,12 @@ defaults:
       show_edit_on_github: true
       show_subscribe: true
       pageview: true
+      
+      
+      layout: article
+title: Page - Sidebar
+sidebar:
+  nav: layouts
 
 
 ## => Plugins
