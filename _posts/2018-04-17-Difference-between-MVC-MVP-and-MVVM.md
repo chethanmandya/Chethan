@@ -1,6 +1,6 @@
 ---
 title: Difference-between-MVC-MVP-and-MVVM
-tags: TeXt
+tags: MVC, MVP,MVVM
 article_header:
   type: cover
   image:
