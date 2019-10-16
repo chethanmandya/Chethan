@@ -1,6 +1,6 @@
 ---
 title: SOLID Principles and Design Patterns. 
-tags: TeXt
+tags: SOLID
 article_header:
   type: cover
   image:
