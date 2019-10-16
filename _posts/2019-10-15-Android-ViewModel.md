@@ -6,351 +6,60 @@ article_header:
   image:
 ---
 
+### ViewModel
+-------------------
 
-#### What is Room ? 
-The Room persistence library provides an abstraction layer over SQLite. library takes care most of complicated stuff that we previously had to do ourselves, we will write much less boilerplate code to create tables and make database operations.
-
-
-
-### Sqlite in android is not that cool 
-- You need to write out a boilerplate code to convert between your java object and your sqlite object. 
-- It doesn't have compile time safety, if you building sqlite query and if you forgot to add comma, you going to get run time crash, that makes you very hard to test all those cases you put. 
-- When you are writing reactive application and you want to observe the databases changes to UI , sqlite doesn't facilitate to do that but Room is built to work with LiveData and RxJava for data observation.  
-
-I am not going to go too much on theoretical knowledge, if you have already used any of those sqllite wrapper like ORMLight, Realm, you will understand the advantages and disadvantages of having Room over any other library. Let me step into an example to make you understand how to use the room and its features. 
-
-There are 3 major components in Room:
- - Database: Contains the database holder and serves as the main access point for the underlying connection to your app's persisted, relational data.
- - Entity: Represents a table within the database.
- - DAO: Contains the methods used for accessing the database.
-
-
-Below example is json response gives you nearby venues which are available on foursquare apis. consider your response look like as below. 
-
-```kotlin
- "venues": [
-      {
-        "id": "5a2285eddee7701b1d63d2d3",
-        "name": "Trainmore",
-        "location": {
-          "address": "Coolsingel 63",
-          "lat": 51.92291909950766,
-          "lng": 4.478042374114597,
-          "labeledLatLngs": [
-            {
-              "label": "display",
-              "lat": 51.92291909950766,
-              "lng": 4.478042374114597
-            }
-          ],
-          "postalCode": "3012 AS",
-          "cc": "NL",
-          "city": "Rotterdam",
-          "state": "South Holland",
-          "country": "Netherlands",
-          "formattedAddress": [
-            "Coolsingel 63",
-            "3012 AS Rotterdam",
-            "Netherlands"
-          ]
-        },
-        "categories": [
-          {
-            "id": "4bf58dd8d48988d175941735",
-            "name": "Gym \/ Fitness Center",
-            "pluralName": "Gyms or Fitness Centers",
-            "shortName": "Gym \/ Fitness",
-            "icon": {
-              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/building\/gym_",
-              "suffix": ".png"
-            },
-            "primary": true
-          }
-        ],
-        "referralId": "v-1557410027",
-        "hasPerk": false
-      }]
-      
-```
+A ViewModel holds your app's UI data while surviving configuration changes. Here's why that's actually useful. Rotating your phone is considered a configuration change. Configuration changes cause your whole activity to get torn down and then recreated. If you don't properly save and restore data from the destroyed activity, you may lose that data and end up with weird UI bugs or even crashes.
 
-### @Entity : 
-Room creates a table for each class annotated with @Entity; the fields in the class correspond to columns in the table.
- 
-Now how do you save above json response ? 
+So enter the ViewModel, which, of course, survives configuration changes. Instead of storing all of your UI data in your activity,
+put it in the ViewModel instead. Now, this helps with configuration changes, but it's also just general good software design.
 
-Note keeping only what we needed : 
+One common pitfall when developing for Android is putting a lot of variables, logic, and data into your activities and fragments. This creates a large, unmaintainable mess of a class and violates the single responsibility principle.You can use ViewModels to easily
+divide out that responsibility.The ViewModels will be responsible for holding all of the data that you're going to show in your UI.
+And then the activity is only responsible for knowing how to draw that data to the screen and receiving user interactions, but not for processing them.
 
-It is really not necessary to have all of the information of venue object which comes from venue response, Creating a User Minimal object that holds only the data needed will improve the amount of memory used by the app. it is always recommended to load only the subset of fields what is needed for UI, that will improve the speed of the queries by reducing the IO cost. Hence I have considered below fields in the venue table.
+If your app loads and stores data,I suggest making a repository class, as described in the "Guide to App Architecture."
+Make sure your ViewModel doesn't become bloated with too many responsibilities. To avoid this, you can create a presenter class or implement a more fully fledged clean architecture.
 
-The following code snippet shows how to define an entity for above json structure:
+OK, so to make a ViewModel, you'll end up extending the ViewModel class. And then you put your UI-related instance variables that were previously in your activity into your ViewModel. Then in your activity's onCreate, you get the ViewModel from a framework utility class called ViewModel Provider.
 
-``` kotlin
-@Entity(
-    indices = [
-        Index("location_city")],
-    primaryKeys = ["id"]
-)
-data class Venue(
-    @field:SerializedName("id")
-    var id: String,
+Notice the ViewModel Provider takes an activity instance. This is the mechanism that allows you to rotate the device, get a technically new activity instance, but always ensure that activity instance is associated with the same ViewModel. With the ViewModel instance, you can use Getters and Setters to access UI data from your activity. If you want to modify the default constructor, which currently takes
+no parameters, you can use a ViewModel Factory to create a custom constructor.
 
-    @field:SerializedName("name")
-    var name: String? = "",
+Now, this is the simplest use case of a ViewModel. But the ViewModel class is also designed to work well with LiveData and data binding.
 
-    @field:SerializedName("location")
-    @field:Embedded(prefix = "location_")
-    var location: Location
+Using all of these together, you can create a reactive UI, which is just a fancy way of saying a UI that automatically updates whenever the underlying data changes.
 
+This assumes all of your data in your ViewModel that you plan to show on screen is wrapped in LiveData. You then should set up data binding as normal.
 
-) : Serializable {
+Here's an example XML with the data binding layout tag and the variable tag for your ViewModel.
 
-}
-```
+Then in your activity or fragment, you associate the variables used in the XML with the binding. Here's an example with an activity.
 
+There's one new line of code, setLifecycleOwner. This allows the binding to observe your LiveData objects in the ViewModel. And it's essentially the magic that lets the binding update whenever the LiveData updates and the ViewModel's onscreen.
 
-### @Dao 
-For every entity you should define Data access object (DAO), This class are responsible for defining the methods that access the database.
+You can now directly reference LiveData fields from your ViewModel in your XML. If you combine this with binding adapters, you can move much of the boilerplate logic out of your activity.
 
-Below code snippet shows how to define a Dao class for venu entity
+Note that this became available at Android Studio 3.1 and higher, so make sure you're on the correct version. To learn more, check out
+the Introduction to LiveData in the docs.
 
-```kotlin
-@Dao
-@OpenForTesting
-abstract class VenueDao {
+ You should never pass contexts into ViewModels. This means no passing in fragments, activities, or views.
+As you saw earlier,ViewModels can outlive your specific activity and fragment lifecycles.
 
+Let's say that you store an activity in your ViewModel. When you rotate the screen, that activity is destroyed. You now have a ViewModel
+holding a reference to a destroyed activity. And this is a memory leak. So if you find yourself needing application contexts, which outlive ViewModel lifecycles, use the Android ViewModel subclass instead.
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertVenue(vararg repos: Venue)
+This includes a reference to the application for you to use. OK, second tip.
 
+ViewModels are meant to be used in addition to onSaveInstanceState.
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertVenues(repositories: List<Venue>)
+ViewModels do not survive process shutdown due to resource restrictions. But onSaveInstance bundles do. ViewModels are great for storing huge amounts of data. 
 
+onSaveInstanceState bundles, not so much. Use ViewModels to store as much UI data as possible so that that data doesn't need to be reloaded or regenerated during a configuration change.
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(result: VenuesSearchResult)
+onSaveInstanceState, on the other hand, should store the smallest amount of data needed to restore the UI state if the process is shut down by the framework.
 
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun createVenueIfNotExists(venue: Venue): Long
-
-
-    @Delete
-    abstract fun delete(item: Venue)
-
-
-    @Query("DELETE FROM Venue")
-    abstract fun deleteAll()
-
-
-    @Query("SELECT * FROM Venue")
-    abstract fun loadAllTheVenue(): LiveData<List<Venue>>
-
-
-    @Query("SELECT * FROM VenuesSearchResult WHERE `query` = :query")
-    abstract fun search(query: String): LiveData<VenuesSearchResult>
-
-
-    fun loadOrdered(repoIds: List<String>): LiveData<List<Venue>> {
-        val order = SparseIntArray()
-        repoIds.withIndex().forEach {
-            order.put(it.index, it.index)
-        }
-        return Transformations.map(loadById(repoIds)) { repositories ->
-
-
-            repositories
-        }
-    }
-
-
-    @Query("SELECT * FROM Venue WHERE id in (:venueIds)")
-    abstract fun loadById(venueIds: List<String>): LiveData<List<Venue>>
-
-
-    @Query("SELECT * FROM VenuesSearchResult WHERE `query` = :query")
-    abstract fun findSearchResult(query: String): VenuesSearchResult?
-
-}
-```
-
-
-### @Database
-To create database we need to define an abstract class that extends RoomDatabase. This class is annotated with @Database, lists of entities contained in the database, and the DAOs which access them. The database version has to be increased by 1, from the initial value.
-
-Below code snippet shows how to define your database class
-
-```kotlin
-@Database(
-    entities = [
-        VenuesSearchResult::class,
-        VenueDetails::class,
-        VenuePhotos::class,
-        Venue::class],
-    version = 1,
-    exportSchema = false
-)
-
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun venueDao(): VenueDao
-    abstract fun venueDetailsDao(): VenueDetailsDao
-}
-```
-
-###  @Embedded
-
-When you annotated field as Embedded, all of those nested field of annotated field will be created as a separate column in the same Entity. 
-
-In the above Venu response, location field has `address`, `lat` and `lng` nested field, all of those filed will be created as separated column in same entity Venue. 
-
-```kotlin
-@Entity(
-    indices = [
-        Index("location_city")],
-    primaryKeys = ["id"]
-)
-data class Venue(
-    @field:SerializedName("id")
-    var id: String,
-
-    @field:SerializedName("name")
-    var name: String? = "",
-
-    @field:SerializedName("location")
-    @field:Embedded(prefix = "location_")
-    var location: Location
-
-
-) : Serializable {
-
-}
-
-```
-### foreignKeys
-
-if suppose, your field contains nested list OR only list. we save this data field either by foreign key relation OR by type converters. 
-
-You will go for making it as foreign key relation when it has very complex structure, structure which has nested list. or you can save them using type convertor when it has only list of objects, like list of primitive type. 
-
-When you have more than one nested list, it is better to save them in foreign key relationship because type convertor is not best fit for nested list, it will slow down performance because of too many traverses in the list while converting user object to primitive type and vice versa. 
-
-In the below example, Venue Details has a field called Photos, The Photos has nested list, it is a relation of 1 to Many. To map this type of relation we will use the @ForeignKey annotation. 
-
-``` kotlin 
-
-@Entity(primaryKeys = ["id"])
-data class VenueDetails(
-
-        @field:SerializedName("id")
-        var id: String,
-
-        @field:SerializedName("name")
-        var name: String? = "",
-
-        @field:SerializedName("description")
-        var description: String? = "",
-
-        @field:SerializedName("contact") // Nested object
-        @field:Embedded(prefix = "contact_")
-        var contact: Contact?,
-
-        @field:SerializedName("rating")
-        var rating: Double? = 0.0,
-
-        @field:SerializedName("location")
-        @field:Embedded(prefix = "location_")
-        var location: Location?,
-
-       /**
-        we are ignoring field because we going to hold this data by foreigh annotation
-       */
-        @field:SerializedName("photos")
-        @Ignore                                  
-        var photos: Photos?
-
-) : Serializable {
-    constructor() : this("", "", "", null, 0.0, null, null)
-
-}
-
-```
-Below entity of VenuePhotos saves the Photo object information which we have ignored in VenueDetails. You can have your own version of entity to save Photo object element "url". it is really not necessary to have complete Photo object with all other fields when you are not using in the app. In the below snappet, we have considered parent entity as Venue Details and child entity as VenuePhotos. we are linking these two entities together by using parent column id in Venue and venueId child column id from VenuePhotos
-
-``` kotlin 
-@Entity(
-        indices = [Index("venueId")],
-        foreignKeys = [ForeignKey(
-                entity = VenueDetails::class,
-                parentColumns = ["id"],
-                childColumns = ["venueId"],
-                onDelete = ForeignKey.CASCADE,
-                deferred = true
-        )])
-data class VenuePhotos(
-        @PrimaryKey(autoGenerate = true)
-        val id : Int,
-        val venueId: String, // this ID points to a VenueDetails
-        val url: String? = ""
-) {
-        constructor(venueId : String, url:String) : this(0,venueId, url)
-}
-
-```
-
-### @TypeConverters
-
-Sometimes we may need to store object as is in one column rather than storing them in separate column as in case of @Embedded, so Type converters comes to the rescue.
-
-Below is the the class which will tell Room how to convert ArrayList object to one of SQLite data type. We will implement methods to convert ArrayList to String for storing it in DB and String back to ArrayList for getting back original User object.
-
-Below is the code snappets where we convert String to Integer list and vice versa. basically table save this data as one of its primitive type rather than user object. 
-
-```kotlin
-object VenueTypeConverters {
-    @TypeConverter
-    @JvmStatic
-    fun stringToIntList(data: String?): List<String>? {
-        return data?.let {
-            it.split(",").map {
-                it
-            }
-        }?.filterNotNull()
-    }
-
-    @TypeConverter
-    @JvmStatic
-    fun intListToString(ints: List<String>?): String? {
-        return ints?.joinToString(",")
-    }
-}
-```
-
-Another example : 
-
-```kotlin
-object Converters {
-        @TypeConverter
-        fun fromString(value: String): ArrayList<String> {
-                val listType = object : TypeToken<ArrayList<String>>() {
-
-                }.getType()
-                return Gson().fromJson<Any>(value, listType)
-        }
-
-        @TypeConverter
-        fun fromArrayList(list: ArrayList<String>): String {
-                val gson = Gson()
-                return gson.toJson(list)
-        }
-}
-
-```
-
-Public static String fromArrayList(ArrayList<String> list) : 
-This method takes our arraylist object as parameter and returns string representation for it so that it can be stored in Room Database.  to make string, just creating Gson object and calling toJson method with our object as parameter is enough.
- 
-public static ArrayList<String> fromString(String value) : While reading data back from Room Database, we get JSON form of our arraylist which we need to convert back. We will use Gson method fromJson by providing JSON string as parameter. But while converting back, we also need to provide the class of original object (in our case, arraylist), but providing arraylist is not enough here as Gson will not be able know what kind of list it has to form.
-
+So for example, you might store all of the user's data within the ViewModel but just store the user's database ID in onSaveInstanceState.
 
 
 <!--more-->
