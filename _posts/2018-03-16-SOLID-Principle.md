@@ -1,9 +1,13 @@
 ---
 title: SOLID Principles and Design Patterns. 
 tags: SOLID
-article_header:
-  type: cover
-  image:
+
+  
+  article_header:
+  type: overlay
+  theme: dark
+  background_color: '#123'
+  background_image: false
 ---
 
 SOLID Principles and Design Patterns plays a key role in achieving all of the below points.
