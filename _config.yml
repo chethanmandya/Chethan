@@ -35,10 +35,10 @@ timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for
 author:
   type      : # "person" (default), "organization"
   name      : Chethan
-  url       : https://github.com/chethu/Chethan/blob/master/assets/Chethan_best_viewing_4_3.jpg
-  avatar    : https://github.com/chethu/Chethan/blob/master/assets/Chethan_best_viewing_4_3.jpg
+  url       : /assets/Chethan_best_viewing_4_3.jpg
+  avatar    : /assets/Chethan_best_viewing_4_3.jpg
   bio       : Android Developer
-  email     :
+  email     : chethu002@gmail.com
   facebook  : chethan.mandya.5
   twitter   : Chethan_mandya
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
