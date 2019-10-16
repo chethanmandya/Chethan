@@ -22,8 +22,6 @@ url     : https://www.chethanmandya.com
 baseurl : # does not include hostname
 title   : Chethan Mandya
 description: It is not the language that makes programs appear simple. It is the programmer that make the language appear simple!
-sidebar:
-  nav: layouts
 
 ## => Language and Timezone
 ##############################
