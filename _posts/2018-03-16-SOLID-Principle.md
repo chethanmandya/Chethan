@@ -1,6 +1,6 @@
 ---
-title: Page - SOLID Principles and Design Patterns.
-tags: SOLID
+title: SOLID Principles and Design Patterns.
+tags: SOLIDDesign
 header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
@@ -12,6 +12,15 @@ article_header:
     gradient: 'linear-gradient(135deg, rgba(34, 139, 87 , .4), rgba(139, 34, 139, .4))'
     
 ---
+
+
+
+
+
+
+
+
+
 
 SOLID Principles and Design Patterns plays a key role in achieving all of the below points.
 
