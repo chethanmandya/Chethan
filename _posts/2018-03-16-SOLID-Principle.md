@@ -1,6 +1,4 @@
-
 ---
-layout: article
 title: Page - SOLID Principles and Design Patterns.
 tags: SOLID
 article_header:
