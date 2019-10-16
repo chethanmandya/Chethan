@@ -1,6 +1,6 @@
 ---
-title: Android Room
-tags: AndroidArchitectureComponents, Android Room
+title: Android Coroutine
+tags: AndroidArchitectureComponents
 article_header:
   type: cover
   image:
