@@ -1,5 +1,4 @@
 ---
-layout: article
 title: Page - SOLID Principles and Design Patterns.
 tags: SOLID
 header:
@@ -11,7 +10,7 @@ article_header:
   background_color: '#203028'
   background_image:
     gradient: 'linear-gradient(135deg, rgba(34, 139, 87 , .4), rgba(139, 34, 139, .4))'
-    src: /docs/assets/images/cover3.jpg
+    
 ---
 
 SOLID Principles and Design Patterns plays a key role in achieving all of the below points.
