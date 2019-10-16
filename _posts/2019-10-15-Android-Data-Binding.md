@@ -1,6 +1,6 @@
 ---
-title: Android Room
-tags: AndroidArchitectureComponents, Android Room
+title: Android Data Binding
+tags: AndroidArchitectureComponents
 article_header:
   type: cover
   image:
