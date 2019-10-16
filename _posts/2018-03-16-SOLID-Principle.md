@@ -1,9 +1,9 @@
----
-title: SOLID Principles and Design Patterns. 
-tags: SOLID
 
-  
-  article_header:
+---
+layout: article
+title: Page - SOLID Principles and Design Patterns.
+tags: SOLID
+article_header:
   type: overlay
   theme: dark
   background_color: '#123'
