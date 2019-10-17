@@ -129,8 +129,10 @@ comments:
     clientSecret: a1b9c370bab6fbacf0b9f4603ead17ed7b98be44
     repository  : https://github.com/chethu
     owner       : Chethan
-    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      # - your GitHub Id
+    admin: [ 
+            id: location.pathname,
+            distractionFreeMode: false 
+          ]
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
