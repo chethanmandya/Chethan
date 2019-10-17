@@ -116,7 +116,7 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: disqus
+  provider: gitalk
 
   ## Disqus
   disqus:
