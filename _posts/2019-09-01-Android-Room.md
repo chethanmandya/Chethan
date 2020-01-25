@@ -7,9 +7,9 @@ article_header:
 ---
 
 
+
 #### What is Room ? 
 The Room persistence library provides an abstraction layer over SQLite. library takes care most of complicated stuff that we previously had to do ourselves, we will write much less boilerplate code to create tables and make database operations.
-
 
 
 ### Sqlite in android is not that cool 
