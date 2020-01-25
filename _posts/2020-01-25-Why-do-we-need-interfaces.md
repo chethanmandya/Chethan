@@ -1,5 +1,5 @@
 ---
-title: Android Room
+title: why do you need interfaces
 tags: AndroidArchitectureComponents, Android Room
 article_header:
   type: cover
@@ -7,7 +7,7 @@ article_header:
 ---
 
 
-#### What is Room ? 
+#### why do you need interfaces ? 
 The Room persistence library provides an abstraction layer over SQLite. library takes care most of complicated stuff that we previously had to do ourselves, we will write much less boilerplate code to create tables and make database operations.
 
 
