@@ -29,3 +29,10 @@ class Program {
 let's say your application has different types of customers like, golden customer, discount costomer . 
 
 when we looking into customer library , we shouldn't think it and say there is gold customer, silver customer , discounted customer, we should just see it as Customer 
+
+
+When to use Abstracton ? 
+
+Code reusability, you can think of abstraction class where you want to give code reusability . 
+
+
