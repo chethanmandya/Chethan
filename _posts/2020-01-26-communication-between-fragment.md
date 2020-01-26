@@ -17,43 +17,43 @@ If you are unable to use a shared ViewModel to communicate between your Fragment
 
   
 
-class SharedViewModel : ViewModel() {
-    val selected = MutableLiveData<Item>()
+        class SharedViewModel : ViewModel() {
+            val selected = MutableLiveData<Item>()
 
-    fun select(item: Item) {
-        selected.value = item
-    }
-}
-
-class MasterFragment : Fragment() {
-
-    private lateinit var itemSelector: Selector
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        itemSelector.setOnClickListener { item ->
-            // Update the UI
+            fun select(item: Item) {
+                selected.value = item
+            }
         }
-    }
-}
 
-class DetailFragment : Fragment() {
+        class MasterFragment : Fragment() {
 
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
+            private lateinit var itemSelector: Selector
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        model.selected.observe(viewLifecycleOwner, Observer<Item> { item ->
-            // Update the UI
-        })
-    }
-}
+            // Use the 'by activityViewModels()' Kotlin property delegate
+            // from the fragment-ktx artifact
+            private val model: SharedViewModel by activityViewModels()
+
+            override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+                super.onViewCreated(view, savedInstanceState)
+                itemSelector.setOnClickListener { item ->
+                    // Update the UI
+                }
+            }
+        }
+
+        class DetailFragment : Fragment() {
+
+            // Use the 'by activityViewModels()' Kotlin property delegate
+            // from the fragment-ktx artifact
+            private val model: SharedViewModel by activityViewModels()
+
+            override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+                super.onViewCreated(view, savedInstanceState)
+                model.selected.observe(viewLifecycleOwner, Observer<Item> { item ->
+                    // Update the UI
+                })
+            }
+        }
 
 
 
