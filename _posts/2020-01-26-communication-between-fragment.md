@@ -14,6 +14,7 @@ All Fragment-to-Fragment communication is done either through a shared ViewModel
 
 If you are unable to use a shared ViewModel to communicate between your Fragments you can manually implement a communication flow using interfaces. However this ends up being more work to implement and it is not easily reusable in other Fragments.
 
+ illustrated by the following sample code
 
 ```kotlin
 class SharedViewModel : ViewModel() {
