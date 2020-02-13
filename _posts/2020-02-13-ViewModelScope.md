@@ -1,5 +1,5 @@
 ---
-title: Communicate with other fragments
+title: ViewModelScope
 tags: Android
 article_header:
   type: cover
@@ -8,56 +8,46 @@ article_header:
 
 
 
-#### Communicate with other fragments? 
-All Fragment-to-Fragment communication is done either through a shared ViewModel or through the associated Activity. Two Fragments should never communicate directly, The recommended way to communicate between fragments is to create a shared ViewModel object. Both fragments can access the ViewModel through their containing Activity.
+#### Why do we need View Model Scope ? 
+Lets take example of it, 
+
+      class MainFragment : Fragment() {
+          fun loadData() = GlobalScope.launch { viewModel.startExecution()  }
+      }
+
+      class YourViewModel : ViewModel() {
+
+          suspend fun startExecution() {
+                  withContext(Dispatchers.IO) {
+                      for (i in 0..10000000) {
+                          delay(500)
+                          println(i)
+                      }
+                  }
+              }
+      }
+      
+      
+What does it do ? Function in the view model will be exeucting even if you exit from the app . because scope of this execution is bound to Global. 
+      
+      
+Same function can be rewrite and can be keep that view model, now the execution of function stops as soon as you navigate out from screen, this avoid memory leak and resource leak. 
 
 
-If you are unable to use a shared ViewModel to communicate between your Fragments you can manually implement a communication flow using interfaces. However this ends up being more work to implement and it is not easily reusable in other Fragments.
+fun startExecution() {
 
-
-  
-
-class SharedViewModel : ViewModel() {
-    val selected = MutableLiveData<Item>()
-
-    fun select(item: Item) {
-        selected.value = item
-    }
-}
-
-class MasterFragment : Fragment() {
-
-    private lateinit var itemSelector: Selector
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        itemSelector.setOnClickListener { item ->
-            // Update the UI
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                for (i in 0..10000000) {
+                    delay(500)
+                    println(i)
+                }
+            }
         }
+
     }
-}
-
-class DetailFragment : Fragment() {
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        model.selected.observe(viewLifecycleOwner, Observer<Item> { item ->
-            // Update the UI
-        })
-    }
-}
 
 
 
-Notice that both fragments retrieve the activity that contains them. That way, when the fragments each get the ViewModelProvider, they receive the same SharedViewModel instance, which is scoped to this activity.
 
-<!--more-->
-
+ 
