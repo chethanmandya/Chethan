@@ -31,11 +31,10 @@ Lets take example of it,
 What does it do ? Function in the view model will be exeucting even if you exit from the app . because scope of this execution is bound to Global. 
       
       
-Same function can be rewrite and can be keep that view model, now the execution of function stops as soon as you navigate out from screen, this avoid memory leak and resource leak. 
+Same function can be rewrite and can be keep that view model scope, now the execution of function stops as soon as you navigate out from screen, this avoid memory leak and resource leak. 
 
 
-fun startExecution() {
-
+    fun startExecution() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 for (i in 0..10000000) {
