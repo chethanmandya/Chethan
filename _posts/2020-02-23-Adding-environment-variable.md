@@ -25,7 +25,7 @@ Now bash usually requires you to restart the terminal to reflect the changes in�
 
 ~/.bash_profile 
 
-this is done, 
+This is done, 
 
 you can view the list of all environment variables in the system by typing **printenv** on the terminal.
 
@@ -45,7 +45,7 @@ Once this is done, run the following command in the terminal,
 
 unset USERNAME
 
-This will get completely rid of eliminated variable. Now, if you type printenv in the terminal you will see that variable is no longer in the list.
+This will get completely rid of eliminated variable. Now, if you type **printenv** in the terminal you will see that variable is no longer in the list.
 
 <!--more-->
 
