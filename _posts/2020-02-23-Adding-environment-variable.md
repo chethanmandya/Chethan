@@ -1,6 +1,6 @@
 ---
-title: Communicate with other fragments
-tags: Android
+title: Adding environment variableEnvironment variables In Unix, Linux
+tags: Linux, Unix
 article_header:
   type: cover
   image:
@@ -8,56 +8,44 @@ article_header:
 
 
 
-#### Communicate with other fragments? 
-All Fragment-to-Fragment communication is done either through a shared ViewModel or through the associated Activity. Two Fragments should never communicate directly, The recommended way to communicate between fragments is to create a shared ViewModel object. Both fragments can access the ViewModel through their containing Activity.
+#### @Adding environment variableEnvironment variables In 
+Adding environment variable Environment variables are stored in the .bash_profile file which is stored in the root directory. Every time you want to add new environment variable, you will make changes to this file. 
+
+Say, you want to add an environment variable for username, you can do it with following commands.First edit the .bash_profile in the root directory
+
+vi ~/.bash_profileand 
+
+add the following line to this fileexport USERNAME="Chethan"
+
+Where USERNAME is the key and Chethan is the value of this environment variable. 
+
+Now bash usually requires you to restart the terminal to reflect the changes in bash_profile file. However, this can be eliminated by just typing following command. This command will update the system with new environment variable..
+
+~/.bash_profileOnce 
+
+this is done, 
+
+you can view the list of all environment variables in the system by typing printenv on the terminal.
+
+Accessing environment variablesOnce you have this variable, you can access them in any shell script with following syntax,ENV["USERNAME"]
+
+This will produce the value of Chethan in the script.
+
+### @Removing environment variableEnvironment variable 
+
+Once it is set they remain under system unless unset explicitly. As you will see if you remove the variables from .bash_profile, refresh the system and then run printenv, it will still show the removed environment variable. The solution is to remove them from bash_profile and unset them from command line.
+
+First step is simple. 
+
+Go to bash_profile file remove the line which sets the new variable and run . ~/.bash_profile on the command line.
+
+Once this is done, run the following command in the terminal,
+
+unset USERNAME
+
+This will get completely rid of eliminated variable. Now, if you type printenv in the terminal you will see that variable is no longer in the list.
 
 
-If you are unable to use a shared ViewModel to communicate between your Fragments you can manually implement a communication flow using interfaces. However this ends up being more work to implement and it is not easily reusable in other Fragments.
-
-
-  
-
-class SharedViewModel : ViewModel() {
-    val selected = MutableLiveData<Item>()
-
-    fun select(item: Item) {
-        selected.value = item
-    }
-}
-
-class MasterFragment : Fragment() {
-
-    private lateinit var itemSelector: Selector
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        itemSelector.setOnClickListener { item ->
-            // Update the UI
-        }
-    }
-}
-
-class DetailFragment : Fragment() {
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        model.selected.observe(viewLifecycleOwner, Observer<Item> { item ->
-            // Update the UI
-        })
-    }
-}
-
-
-
-Notice that both fragments retrieve the activity that contains them. That way, when the fragments each get the ViewModelProvider, they receive the same SharedViewModel instance, which is scoped to this activity.
 
 <!--more-->
 
