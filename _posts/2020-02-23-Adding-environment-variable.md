@@ -27,7 +27,7 @@ Now bash usually requires you to restart the terminal to reflect the changes in�
 
 this is done, 
 
-you can view the list of all environment variables in the system by typing printenv on the terminal.
+you can view the list of all environment variables in the system by typing **printenv** on the terminal.
 
 Accessing environment variablesOnce you have this variable, you can access them in any shell script with following syntax, ENV["USERNAME"]
 
@@ -35,7 +35,7 @@ This will produce the value of Chethan in the script.
 
 ### @Removing environment variable 
 
-Once it is set they remain under system unless unset explicitly. As you will see if you remove the variables from .bash_profile, refresh the system and then run printenv, it will still show the removed environment variable. The solution is to remove them from bash_profile and unset them from command line.
+Once it is set they remain under system unless unset explicitly. As you will see if you remove the variables from .bash_profile, refresh the system and then run **printenv**, it will still show the removed environment variable. The solution is to remove them from bash_profile and unset them from command line.
 
 First step is simple. 
 
