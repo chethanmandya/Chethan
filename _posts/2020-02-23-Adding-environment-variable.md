@@ -23,13 +23,13 @@ Where USERNAME is the key and Chethan is the value of this environment varia
 
 Now bash usually requires you to restart the terminal to reflect the changes in bash_profile file. However, this can be eliminated by just typing following command. This command will update the system with new environment variable.
 
-~/.bash_profileOnce 
+~/.bash_profile 
 
 this is done, 
 
 you can view the list of all environment variables in the system by typing printenv on the terminal.
 
-Accessing environment variablesOnce you have this variable, you can access them in any shell script with following syntax,ENV["USERNAME"]
+Accessing environment variablesOnce you have this variable, you can access them in any shell script with following syntax, ENV["USERNAME"]
 
 This will produce the value of Chethan in the script.
 
