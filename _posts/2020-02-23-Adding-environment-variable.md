@@ -8,7 +8,7 @@ article_header:
 
 
 
-### @Adding environment variableEnvironment variables In 
+### @Adding environment variableEnvironment variables In Unix, Linux Environment
 Adding environment variable Environment variables are stored in the .bash_profile file which is stored in the root directory. Every time you want to add new environment variable, you will make changes to this file. 
 
 Say, you want to add an environment variable for username, you can do it with following commands.First edit the .bash_profile in the root directory
