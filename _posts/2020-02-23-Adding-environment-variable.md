@@ -1,5 +1,5 @@
 ---
-title: Adding environment variableEnvironment variables In Unix, Linux
+title: Adding environment variables In Unix, Linux
 tags: Linux, Unix
 article_header:
   type: cover
