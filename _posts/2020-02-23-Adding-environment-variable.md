@@ -8,7 +8,7 @@ article_header:
 
 
 
-### @Adding environment variableEnvironment variables In Unix, Linux Environment
+### @Adding environment variables In Unix, Linux Environment
 Adding environment variable Environment variables are stored in the .bash_profile file which is stored in the root directory. Every time you want to add new environment variable, you will make changes to this file. 
 
 Say, you want to add an environment variable for username, you can do it with following commands.First edit the .bash_profile in the root directory
@@ -31,7 +31,7 @@ Accessing environment variablesOnce you have this variable, you can access them 
 
 This will produce the value of Chethan in the script.
 
-### @Removing environment variableEnvironment variable 
+### @Removing environment variable 
 
 Once it is set they remain under system unless unset explicitly. As you will see if you remove the variables from .bash_profile, refresh the system and then run printenv, it will still show the removed environment variable. The solution is to remove them from bash_profile and unset them from command line.
 
