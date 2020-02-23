@@ -15,7 +15,9 @@ Say, you want to add an environment variable for username, you can do it with fo
 
 vi ~/.bash_profileand 
 
-add the following line to this fileexport USERNAME="Chethan"
+add the following line to this file 
+
+export USERNAME="Chethan"
 
 Where USERNAME is the key and Chethan is the value of this environment variable. 
 
@@ -44,8 +46,6 @@ Once this is done, run the following command in the terminal,
 unset USERNAME
 
 This will get completely rid of eliminated variable. Now, if you type printenv in the terminal you will see that variable is no longer in the list.
-
-
 
 <!--more-->
 
