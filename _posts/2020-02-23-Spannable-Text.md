@@ -10,6 +10,11 @@ article_header:
 
 ####
 
+<img src="https://github.com/chethu/Android-Spannable-Text/blob/master/Spannable_text.gif" width="100" height="400" />
+
+
+
+
 ```kotlin
 object BindingAdapters {
 
