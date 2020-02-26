@@ -10,9 +10,7 @@ article_header:
 
 ####
 
-<img src="https://github.com/chethu/Android-Spannable-Text/blob/master/Spannable_text.gif" width="400" height="800" />
-
-
+![](https://github.com/chethu/Android-Spannable-Text/blob/master/Spannable_text.gif)
 
 
 ```kotlin
