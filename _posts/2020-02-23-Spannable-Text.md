@@ -19,10 +19,14 @@ Below is simple demonstration of how you can organise your code for spannable te
   </div>
   <div class="card__content">
     <div class="card__header">
-      Clicking Text of Terms And Condition takes to another fragment to present detailed view of terms and condition, Similarly Privacy plolicy.
+     
     </div>
   </div>
 </div>
+
+Clicking Text of Terms And Condition takes to another fragment to present detailed view of terms and condition, Similarly Privacy plolicy.
+
+Below is code snap shot shows how you construct binding adapter for the same : 
 
 ```kotlin
 object BindingAdapters {
@@ -97,6 +101,8 @@ object BindingAdapters {
 
 }
 ```
+
+Calling binding adapter method in your XML : 
 
 ```kotlin
       <TextView
