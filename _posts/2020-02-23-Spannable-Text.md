@@ -19,7 +19,7 @@ Below is simple demonstration of how you can organise your code for spannable te
   </div>
   <div class="card__content">
     <div class="card__header">
-      <h4>Clicking Text of Terms And Condition takes to another fragment to present detailed view of terms and condition, Simliarly Privacy plolicy </h4>
+      <h1>Clicking Text of Terms And Condition takes to another fragment to present detailed view of terms and condition, Simliarly Privacy plolicy </h1>
     </div>
   </div>
 </div>
