@@ -17,17 +17,17 @@ Say, you want to add an environment variable for username, you can do it with fo
 <div class="card">
   <div class="card__content">
     <div class="card__header">
-      <h4>Terminal</h4>
+      <h4>In your Terminal</h4>
     </div>
     <p>
     
-    vi ~/.bash_profileand 
+    vi ~/.bash_profile \n
 
-    add the following line to this file 
+    add the following line to this file \n
 
-    export USERNAME="Chethan"
+    export USERNAME="Chethan" \n
 
-    Where USERNAME is the key and Chethan is the value of this environment variable. 
+    Where USERNAME is the key and Chethan is the value of this environment variable. \n
     
     </p>
   </div>
