@@ -14,7 +14,7 @@ Spans are helpful to style text, it help us to change the color of specific port
 Below is simple demonstration of how you organise your code for spannable text . In this , The text terms&contion , Privacy Policy is textual color is made to be colorful and clickable. 
 
 
-# Screen
+
 <img src = "https://github.com/chethu/Android-Spannable-Text/blob/master/Spannable_text.gif"></img>
 
 
