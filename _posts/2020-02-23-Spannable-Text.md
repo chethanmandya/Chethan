@@ -9,9 +9,9 @@ article_header:
 
 
 #### Spannable Text
-Spans are helpful to style text, it help us to change the color of specific portion , help us to make specific portion to be clickable, resizable , there many other use cases where we make use of the spannable text, In the most cases , you come across one common style where you want to change the color of some portion and make that portion to be clickable. 
+Spans are helpful to style text, it help us to change the color of specific portion of the text, help us to make specific portion to be clickable, resizable , there many other use cases where we make use of the spannable text. Frequently, you come across one common style where you want to change the color of some portion and make that portion to be clickable. 
 
-Below is simple demonstration of how you organise your code for spannable text . In this , The text terms&contion , Privacy Policy is textual color is made to be colorful and clickable. 
+Below is simple demonstration of how you can organise your code for spannable text . In this snapshot, The text terms&contion , Privacy Policy is taking color and clickable. 
 
 <div class="card">
   <div class="card__image">
@@ -19,7 +19,7 @@ Below is simple demonstration of how you organise your code for spannable text .
   </div>
   <div class="card__content">
     <div class="card__header">
-      <h4>Photograph</h4>
+      <h4>Clicking Text of Terms And Condition takes to another fragment to present detailed view of terms and condition, Simliarly Privacy plolicy </h4>
     </div>
   </div>
 </div>
