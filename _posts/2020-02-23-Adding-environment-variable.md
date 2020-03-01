@@ -13,27 +13,15 @@ In Linux Or Unix environment , All your environment variables are stored in the�
 
 Say, you want to add an environment variable for username, you can do it with following commands. First edit the .bash_profile in the root directory
 
+    vi ~/.bash_profile
 
-<div class="card">
-  <div class="card__content">
-    <div class="card__header">
-      <h4>In your Terminal</h4>
-    </div>
-    <p>
+    add the following line to this file 
+
+    export USERNAME="Chethan"
+
+    Where USERNAME is the key and Chethan is the value of this environment variable.
     
-    vi ~/.bash_profile \n
-
-    add the following line to this file \n
-
-    export USERNAME="Chethan" \n
-
-    Where USERNAME is the key and Chethan is the value of this environment variable. \n
-    
-    </p>
-  </div>
-</div>
-
-
+  
 
 Now bash usually requires you to restart the terminal to reflect the changes in bash_profile file. However, this can be eliminated by just typing following command. This command will update the system with new environment variable.
 
