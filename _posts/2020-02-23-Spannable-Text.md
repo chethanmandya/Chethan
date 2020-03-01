@@ -8,8 +8,13 @@ article_header:
 
 
 
-####
+#### Spannable Text
+Spans are helpful to style text, it help us to change the color of specific portion , help us to make specific portion to be clickable, resizable , there many other use cases where we make use of the spannable text, In the most cases , you come across one common style where you want to change the color of some portion and make that portion to be clickable. 
 
+Below is simple demonstration of how you organise your code for spannable text . In this , The text terms&contion , Privacy Policy is textual color is made to be colorful and clickable. 
+
+
+![] (https://github.com/chethu/Android-Spannable-Text/blob/master/Spannable_text.gif)
 
 
 ```kotlin
