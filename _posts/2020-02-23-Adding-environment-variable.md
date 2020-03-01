@@ -25,7 +25,7 @@ Say, you want to add an environment variable for username, you can do it with fo
 
 Now bash usually requires you to restart the terminal to reflect the changes in bash_profile file. However, this can be eliminated by just typing following command. This command will update the system with new environment variable.
 
-~/.bash_profile 
+     ~/.bash_profile 
 
 This is done, 
 
