@@ -13,8 +13,16 @@ Spans are helpful to style text, it help us to change the color of specific port
 
 Below is simple demonstration of how you organise your code for spannable text . In this , The text terms&contion , Privacy Policy is textual color is made to be colorful and clickable. 
 
-
-<img src="{{site.baseurl}}/assets/post/Spannable_text.gif">
+<div class="card">
+  <div class="card__image">
+    <img class="image" src="{{site.baseurl}}/assets/post/Spannable_text.gif"/>
+  </div>
+  <div class="card__content">
+    <div class="card__header">
+      <h4>Photograph</h4>
+    </div>
+  </div>
+</div>
 
 ```kotlin
 object BindingAdapters {
