@@ -15,12 +15,7 @@ Below is simple demonstration of how you can organise your code for spannable te
 
 <div class="card">
   <div class="card__image">
-    <img class="image" src="{{site.baseurl}}/assets/post/Spannable_text.gif"/>
-  </div>
-  <div class="card__content">
-    <div class="card__header">
-     
-    </div>
+     <img class="image" src="{{site.baseurl}}/assets/post/Spannable_text.gif"/>
   </div>
 </div>
 
