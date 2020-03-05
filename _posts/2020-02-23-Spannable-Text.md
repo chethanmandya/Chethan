@@ -110,5 +110,7 @@ Calling binding adapter method in your XML :
 	app:layout_constraintTop_toTopOf="parent"/>
 ```
 
+You can find project link here - 
+https://github.com/chethu/Android-Spannable-Text
 <!--more-->
 
