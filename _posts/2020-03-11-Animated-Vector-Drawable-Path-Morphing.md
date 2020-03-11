@@ -15,15 +15,11 @@ article_header:
 <div class="card">
   <div class="card__image">
     <img class="image" src="{{site.baseurl}}/assets/post/original_demo.gif"/>
-  </div>
-</div>
-
-
-<div class="card">
-  <div class="card__image">
     <img class="image" src="{{site.baseurl}}/assets/post/demo_vedio.gif"/>
   </div>
 </div>
+
+
 
 
 
