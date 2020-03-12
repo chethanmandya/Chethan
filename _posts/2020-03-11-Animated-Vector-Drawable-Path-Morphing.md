@@ -12,18 +12,19 @@ article_header:
  
  
  <div class="card">
+  
   <div class="card__image">
     <img class="image" src="{{site.baseurl}}/assets/post/original_demo.gif"/>
   </div>
-</div>
-
-
- <div class="card">
-  <div class="card__image">
+  
+   <div class="card__image">
     <img class="image" src="{{site.baseurl}}/assets/post/demo_vedio.gif"/>
   </div>
+  
 </div>
 
+
+ 
 
 Here’s my attempt at gathering all the required information and compressing it to something you can easily understand what is all about Animated vector drawable and how this is helping to animate some of complex animation. The reason I selected this topic is that, Google has not provided stright forward examples to build animation, You may find bits of information here and there, but nothing solid.
 
