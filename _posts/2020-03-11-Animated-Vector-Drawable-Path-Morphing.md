@@ -11,14 +11,16 @@ article_header:
 #### Animated-Vector-Drawable-Path-Morphing
 
 
-
+<div class="grid">
+  <div class="cell cell--12 cell--lg-6 content">
 <div class="card">
   <div class="card__image">
     <img class="image" src="{{site.baseurl}}/assets/post/original_demo.gif"/>
     <img class="image" src="{{site.baseurl}}/assets/post/demo_vedio.gif"/>
   </div>
 </div>
-
+    </div>
+</div>
 
 
 
