@@ -1,0 +1,25 @@
+Sealed class
+
+There are numberous techniques out there that helps to manage stage 
+
+what is sealed class ? and where it should be using this ? 
+Restricted hierachies
+Set
+Types
+Contain values
+
+
+Simple eample , it is modeling response from api 
+
+sealed class Result {
+  class Success()
+  class Failure()
+  }
+  
+  then we can use kotlin when expression : 
+  
+  when(result) {
+    is Result.Success -> 
+    is Result.Failure ->
+  }
+  
