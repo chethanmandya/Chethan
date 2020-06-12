@@ -1,14 +1,24 @@
-Below are the Scoping function of Kotlin
+---
+title: Kotlin Scoping function
+tags: Android Kotlin
+article_header:
+  type: cover
+  image:
+---
 
-Kotlin let, run, also, apply, with
 
-its very simple to understand this, I read many of the article they made complicated , let me put this in my way. 
+#### Kotlin let, run, also, apply, with
 
-Kotlin let, run, also, apply, with , we call these as scoping function in kotlin. 
+Kotlin’s standard library includes some often-used scope functions that are so abstract that even those who have been 
+programming in Kotlin for a while can have a hard time keeping them straight. In this guide, I am going to clarify four 
+of these scope functions in particular
 
-let's understand each one of this - 
 
-Let : let takes the invoked object  as  parameter and returns the result of the lambda expression
+Let's understand each one of this - 
+
+#### Let : 
+
+let takes the invoked object  as  parameter and returns the result of the lambda expression
 
 fun main(args: Array<String>) {
     var str = "Hello World" 
@@ -35,13 +45,13 @@ name?.let { println(it) } //nothing happens
 The code inside the let expression is executed only when the property is not null. Thus let saves us from the if else null checker too!
 
 
-Kotlin run
+#### Kotlin run
 
 Similar to the let function, the run function also returns the last statement.
 Unlike let, the run function doesn’t support the it keyword.
 
 
-Kotlin also :
+#### Kotlin also :
 
 it takes called object reference 
 it returns the original object instead of any new return data. Hence the return data has always the same type.
@@ -85,7 +95,7 @@ Person(name = Chethan, tutorial = Swift)
 
 apply vs also : apply return modifed version of object reference , but also returns called object. 
 
-Kotlin with : 
+#### Kotlin with : 
 
 with is used to change instance properties without the need to call dot operator over the reference every time.
 
