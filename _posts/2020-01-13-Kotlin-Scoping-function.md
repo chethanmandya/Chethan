@@ -49,9 +49,19 @@ The code inside the let expression is executed only when the property is not nul
 
 #### Kotlin run
 
-Similar to the let function, the run function also returns the last statement.
-Unlike let, the run function doesn’t support the it keyword.
+- Similar to the let function, the run function also returns the last statement.
+- Unlike let, the run function doesn’t support the it keyword.
 
+```kotlin
+var tutorial = "This is Kotlin Tutorial"
+    println(tutorial) //This is Kotlin Tutorial
+    tutorial = run {
+        val tutorial = "This is run function"
+        tutorial
+    }
+    println(tutorial) //This is run function
+    
+```
 
 #### Kotlin also :
 
@@ -109,3 +119,14 @@ with is used to change instance properties without the need to call dot operator
 
 with is used to change instance properties without the need to call dot operator over the reference every time.
 
+
+```Kotlin
+data class Person(var name: String, var tutorial : String)
+var person = Person("Anupam", "Kotlin")
+
+with(person)
+    {
+        name = "No Name"
+        tutorial = "Kotlin tutorials"
+    }
+```
