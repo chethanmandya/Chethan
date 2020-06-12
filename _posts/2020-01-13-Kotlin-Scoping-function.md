@@ -20,28 +20,30 @@ Let's understand each one of this -
 
 let takes the invoked object  as  parameter and returns the result of the lambda expression
 
-fun main(args: Array<String>) {
-    var str = "Hello World" 
-    str.let { 
-      it + "kotlin"
-      println("$it!!") //  returns the result of the lambda expression
+```kotlin
+      fun main(args: Array<String>) {
+          var str = "Hello World" 
+          str.let { 
+            it + "kotlin"
+            println("$it!!") //  returns the result of the lambda expression
+            }
+          println(str) 
+
       }
-    println(str) 
-
-}
-//Prints
-//Hello World!!
-//Hello World
-
-
+      
+      //Prints
+      //Hello World!!
+      //Hello World
+```
 
 Additionally, let is useful for checking Nullable properties as shown below.
 
-var name : String? = "Kotlin let null check"
-name?.let { println(it) } //prints Kotlin let null check
-name = null
-name?.let { println(it) } //nothing happens
-
+```kotlin
+      var name : String? = "Kotlin let null check"
+      name?.let { println(it) } //prints Kotlin let null check
+      name = null
+      name?.let { println(it) } //nothing happens
+```
 The code inside the let expression is executed only when the property is not null. Thus let saves us from the if else null checker too!
 
 
@@ -56,26 +58,30 @@ Unlike let, the run function doesn’t support the it keyword.
 it takes called object reference 
 it returns the original object instead of any new return data. Hence the return data has always the same type.
 
-var m = 1
-m = m.also { it + 1 }.also { it + 1 }
-println(m) //prints 1 
+```kotlin
+      var m = 1
+      m = m.also { it + 1 }.also { it + 1 }
+      println(m) //prints 1 
+```
 
+Example 2- 
 
-example 2- 
-data class Person(var name: String, var tutorial : String)
-var person = Person("Chethan", "Kotlin")
+```kotlin
+      data class Person(var name: String, var tutorial : String)
+      var person = Person("Chethan", "Kotlin")
 
-var l = person.let { it.tutorial = "Android" }
-var al = person.also { it.tutorial = "Android" }
-    
-println(l)
-println(al)
-println(person)
+      var l = person.let { it.tutorial = "Android" }
+      var al = person.also { it.tutorial = "Android" }
 
-Output : 
-Kotlin.unit
-Person(name = Chethan, tutorial = Android)
-Person(name = Chethan, tutorial = Android)
+      println(l)
+      println(al)
+      println(person)
+
+      Output : 
+      Kotlin.unit
+      Person(name = Chethan, tutorial = Android)
+      Person(name = Chethan, tutorial = Android)
+```
 
 
 Kotlin apply : 
@@ -84,14 +90,16 @@ it returns object reference on completion.
 
 Example - 1 : 
 
-data class Person(var name: String, var tutorial : String)
-var person = Person("Chethan", "Kotlin")
+```kotlin
+      data class Person(var name: String, var tutorial : String)
+      var person = Person("Chethan", "Kotlin")
 
-person.apply { this.tutorial = "Swift" }
-println(person)
+      person.apply { this.tutorial = "Swift" }
+      println(person)
 
-Output : 
-Person(name = Chethan, tutorial = Swift)
+      Output : 
+      Person(name = Chethan, tutorial = Swift)
+```
 
 apply vs also : apply return modifed version of object reference , but also returns called object. 
 
