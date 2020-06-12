@@ -122,7 +122,7 @@ with is used to change instance properties without the need to call dot operator
 
 ```Kotlin
 data class Person(var name: String, var tutorial : String)
-var person = Person("Anupam", "Kotlin")
+var person = Person("Chethan", "Kotlin")
 
 with(person)
     {
