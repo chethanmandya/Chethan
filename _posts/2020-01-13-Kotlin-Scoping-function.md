@@ -123,12 +123,14 @@ apply vs also : apply return modifed version of object reference , but also retu
 
 
 ```Kotlin
-data class Person(var name: String, var tutorial : String)
-var person = Person("Chethan", "Kotlin")
 
-with(person)
-    {
-        name = "No Name"
-        tutorial = "Kotlin tutorials"
-    }
+	data class Person(var name: String, var tutorial : String)
+	var person = Person("Chethan", "Kotlin")
+
+	with(person)
+	    {
+		name = "No Name"
+		tutorial = "Kotlin tutorials"
+	    }
+	    
 ```
