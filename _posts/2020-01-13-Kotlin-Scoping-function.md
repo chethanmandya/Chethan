@@ -16,9 +16,10 @@ of these scope functions in particular
 
 Let's understand each one of this - 
 
-#### Let : 
+### Kotlin Let : 
 
-let takes the invoked object  as  parameter and returns the result of the lambda expression
+- let takes the invoked object  as  parameter 
+- returns the result of the lambda expression
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -47,7 +48,7 @@ name?.let { println(it) } //nothing happens
 The code inside the let expression is executed only when the property is not null. Thus let saves us from the if else null checker too!
 
 
-#### Kotlin run
+### Kotlin run
 
 - Similar to the let function, the run function also returns the last statement.
 - Unlike let, the run function doesn’t support the it keyword.
@@ -65,8 +66,8 @@ var tutorial = "This is Kotlin Tutorial"
 
 #### Kotlin also :
 
-it takes called object reference 
-it returns the original object instead of any new return data. Hence the return data has always the same type.
+- it takes called object reference 
+- it returns the original object instead of any modified object. Hence the return data has always the same type.
 
 ```kotlin
 var m = 1
@@ -94,9 +95,10 @@ Person(name = Chethan, tutorial = Android)
 ```
 
 
-Kotlin apply : 
-it takes called object reference 
-it returns object reference on completion.
+### Kotlin apply : 
+
+- it takes called object reference 
+- it returns object reference on completion.
 
 Example - 1 : 
 
@@ -113,11 +115,11 @@ Person(name = Chethan, tutorial = Swift)
 
 apply vs also : apply return modifed version of object reference , but also returns called object. 
 
-#### Kotlin with : 
+### Kotlin with : 
 
-with is used to change instance properties without the need to call dot operator over the reference every time.
+- with is used to change instance properties without the need to call dot operator over the reference every time.
 
-with is used to change instance properties without the need to call dot operator over the reference every time.
+- with is used to change instance properties without the need to call dot operator over the reference every time.
 
 
 ```Kotlin
