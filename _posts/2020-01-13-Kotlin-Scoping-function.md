@@ -122,11 +122,11 @@ apply vs also : apply return modifed version of object reference , but also retu
 - with is used to change instance properties without the need to call dot operator over the reference every time.
 
 ```kotlin
-	data class Person(var name: String, var tutorial : String)
-	var person = Person("Chethan", "Kotlin")
-	with(person) {
-		name = "No Name"
-		tutorial = "Kotlin tutorials"
-	}
+data class Person(var name: String, var tutorial : String)
+var person = Person("Chethan", "Kotlin")
+with(person) {
+	name = "No Name"
+	tutorial = "Kotlin tutorials"
+}
 ```
 
