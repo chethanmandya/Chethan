@@ -16,7 +16,7 @@ of these scope functions in particular
 
 Let's understand each one of this - 
 
-### Kotlin Let : 
+### Kotlin Let 
 
 - let takes the invoked object  as  parameter 
 - returns the result of the lambda expression
@@ -95,7 +95,7 @@ Person(name = Chethan, tutorial = Android)
 ```
 
 
-### Kotlin apply : 
+### Kotlin apply 
 
 - it takes called object reference 
 - it returns object reference on completion.
@@ -115,7 +115,7 @@ Person(name = Chethan, tutorial = Swift)
 
 apply vs also : apply return modifed version of object reference , but also returns called object. 
 
-### Kotlin with : 
+### Kotlin with  
 
 - with is used to change instance properties without the need to call dot operator over the reference every time.
 
