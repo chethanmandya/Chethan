@@ -1,0 +1,29 @@
+Commands to start UI Automator 
+
+```kotlin
+P46032:~ ts-chethan.boranna$  cd /Users/ts-chethan.boranna/Library/Android/sdk
+P46032:sdk ts-chethan.boranna$ java -version
+java version "13.0.2" 2020-01-14
+Java(TM) SE Runtime Environment (build 13.0.2+8)
+Java HotSpot(TM) 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)
+P46032:sdk ts-chethan.boranna$ /usr/libexec/java_home -V
+Matching Java Virtual Machines (4):
+    13.0.2, x86_64:	"Java SE 13.0.2"	/Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home
+    1.8.0_251, x86_64:	"Java SE 8"	/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home
+    1.6.0_65-b14-468, x86_64:	"Java SE 6"	/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+    1.6.0_65-b14-468, i386:	"Java SE 6"	/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+
+/Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home
+P46032:sdk ts-chethan.boranna$ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+P46032:sdk ts-chethan.boranna$ source ~/.bash_profile
+P46032:sdk ts-chethan.boranna$ java -version
+java version "1.8.0_251"
+Java(TM) SE Runtime Environment (build 1.8.0_251-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.251-b08, mixed mode)
+P46032:sdk ts-chethan.boranna$ ls
+build-tools	emulator	fonts		patcher		platforms	sources		tools
+cmdline-tools	extras		licenses	platform-tools	skins		system-images
+P46032:sdk ts-chethan.boranna$ cd tools
+P46032:tools ts-chethan.boranna$ cd bin
+P46032:bin ts-chethan.boranna$ ./uiautomatorviewer 
+```
