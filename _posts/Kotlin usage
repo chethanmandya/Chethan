@@ -1,0 +1,5 @@
+firstOrNull()
+
+Suppose you have an nullable array, you need to access the index of that array , below is the code to use
+
+val reviews =  customProviderReviews.firstOrNull()
