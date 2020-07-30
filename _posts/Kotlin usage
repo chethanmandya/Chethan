@@ -2,4 +2,27 @@ firstOrNull()
 
 Suppose you have an nullable array, you need to access the index of that array , below is the code to use
 
-val reviews =  customProviderReviews.firstOrNull()
+
+val originalList = listOf(1, 2, 3, 4, 5, 6)
+assertEquals(listOf(2, 4, 6), originalList.filter { it % 2 == 0 })
+
+val originalList = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+val result = originalList.firstOrNull { it > 4 }
+assertEquals(result, 5)
+
+val originalList = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+val result = originalList.getOrElse(12) { 12 }
+assertEquals(result, 12)
+
+val originalList = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+val result = originalList.dropWhile { it < 5 }
+assertEquals(result, listOf(5, 6, 7, 8, 9, 10))
+
+val originalList = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+val result = originalList
+               .dropWhile { it < 5 }
+               .find { it < 7 }
+assertEquals(result, 5)
+
+
+
