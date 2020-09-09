@@ -23,3 +23,6 @@ sealed class Result {
     is Result.Failure ->
   }
   
+  
+  when to use Interface and Abstract ? 
+  
