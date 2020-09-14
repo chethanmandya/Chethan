@@ -1,3 +1,23 @@
+
+Kotlin type system
+
+High order Function 
+
+Function takes other function as argument and return other funtion as return type. 
+
+typealias IntMapper = (Int) -> Int 
+Function takes the Integer and return Integer 
+
+for calculate(param : Int, operation : IntMappper) Int {
+
+}
+
+
+Inline : 
+
+If you have inline function, What compilier does is, the code of function  
+
+
 firstOrNull()
 
 Suppose you have an nullable array, you need to access the index of that array , below is the code to use
