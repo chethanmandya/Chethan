@@ -1,4 +1,17 @@
 
+how to get some field list in object list in kotlin
+fun main(args:Array<String>){
+    println("Hello World")
+    val list = listOf(member("hong",10), member("kil", 10))
+}
+
+data class member(var name:String, var age:Int)
+Above code, I want to get single field list in above code such as name
+{"hong", "kil"}
+
+val names = list.map { it.name }
+
+
 Kotlin type system
 
 High order Function 
