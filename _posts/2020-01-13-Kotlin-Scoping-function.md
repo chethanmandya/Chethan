@@ -74,6 +74,9 @@ The code inside the let expression is executed only when the property is not nul
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+***also*** and ***apply*** are typically used when the value of the object they are called against needs to be used for some mutating operation. Any return value from the also and apply blocks is ignored, and the value of the original object is returned.
+
 #### Kotlin also :
 
 - it takes called object reference 
