@@ -16,10 +16,35 @@ of these scope functions in particular
 
 Let's understand each one of this - 
 
+
+***run*** and ***let*** as transformation functions, meaning that they take the value of the object they are called against, and return a new value.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Kotlin run
+
+- run is a transformation function, meaning that it take the value of the object it is called against, and return a new value.
+- The run function exposes the value of the object that it was called from as this inside the block.
+
+#### When you should use:
+run and let as transformation functions, They take the value of the object they are called against, and return a new value.
+
+```kotlin
+var tutorial = "This is Kotlin Tutorial"
+    println(tutorial) //This is Kotlin Tutorial
+    tutorial = run {
+        val tutorial = "This is run function"
+        tutorial
+    }
+    println(tutorial) //This is run function
+    
+```
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### Kotlin Let 
 
-- let takes the invoked object  as  parameter 
-- returns the result of the lambda expression
+- run is a transformation function, meaning that it take the value of the object it is called against, and return a new value.
+- The let function exposes the value of the object that it was called from as `it` inside the block, while `this` is retained from the outer scope.
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -47,27 +72,15 @@ name?.let { println(it) } //nothing happens
 ```
 The code inside the let expression is executed only when the property is not null. Thus let saves us from the if else null checker too!
 
-
-### Kotlin run
-
-- Similar to the let function, the run function also returns the last statement.
-- Unlike let, the run function doesn’t support the it keyword.
-
-```kotlin
-var tutorial = "This is Kotlin Tutorial"
-    println(tutorial) //This is Kotlin Tutorial
-    tutorial = run {
-        val tutorial = "This is run function"
-        tutorial
-    }
-    println(tutorial) //This is run function
-    
-```
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #### Kotlin also :
 
 - it takes called object reference 
 - it returns the original object instead of any modified object. Hence the return data has always the same type.
+
+#### When you should use: 
+- ***also*** and ***apply*** as mutation functions, meaning that 
 
 ```kotlin
 var m = 1
@@ -94,11 +107,16 @@ Person(name = Chethan, tutorial = Android)
 Person(name = Chethan, tutorial = Android)
 ```
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Kotlin apply 
 
 - it takes called object reference 
 - it returns object reference on completion.
+
+#### When you should use: 
+- Often case you use this when initializing a new object.
+- ***also*** and ***apply*** as mutation functions
 
 Example - 1 : 
 
@@ -114,6 +132,8 @@ Person(name = Chethan, tutorial = Swift)
 ```
 
 apply vs also : apply return modifed version of object reference , but also returns called object. 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Kotlin with  
 
