@@ -262,7 +262,7 @@ class MyViewModel : ScopedViewModel() {
 
 <!--more-->
 
-Let's dissect the how Android coroutines code in the login function:
+Let's discurse how Android coroutines code in the login function works,
 
 ```kotlin
 class LoginViewModel(
