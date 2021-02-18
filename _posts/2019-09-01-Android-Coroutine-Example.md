@@ -54,10 +54,15 @@ One can think of a coroutine as a light-weight thread. Like threads, coroutines 
 
 These are the functions to start the coroutine:
 
+```kotlin
+
 - launch{}
   - launch returns a Job and does not carry any resulting value
+  
 - async{}
   - async returns a Deferred - a light-weight non-blocking future that represents a promise to provide a result later.
+  
+ ```
  
  If the code inside the launch terminated with an exception, then it is treated like uncaught exceptions in a thread crashes Android applications. An uncaught exception inside the async code is stored inside the resulting Deferred and is not delivered anywhere else, it will get silently dropped unless processed.
 
@@ -65,14 +70,16 @@ These are the functions to start the coroutine:
 
 To start any coroutine, you must provide dispatcher, dispatcher is nothing but indicating where you want to dispatch execution once task is completed. 
 
-there are two types of dispatchers in Android . 
+To specify where the coroutines should run, Kotlin provides three dispatchers that you can use:
+
 
 ```kotlin
-// dispatches execution into Android main thread
-val uiDispatcher: CoroutineDispatcher = Dispatchers.Main
 
-// represent a pool of shared threads as coroutine dispatcher
-val bgDispatcher: CoroutineDispatcher = Dispatchers.I0
+ - Dispatchers.Main - Use this dispatcher to run a coroutine on the main Android thread. This should be used only for interacting with the UI and performing quick work. Examples include calling suspend functions, running Android UI framework operations, and updating LiveData objects.
+
+- Dispatchers.IO - This dispatcher is optimized to perform disk or network I/O outside of the main thread. Examples include using the Room component, reading from or writing to files, and running any network operations.
+
+- Dispatchers.Default - This dispatcher is optimized to perform CPU-intensive work outside of the main thread. Example use cases include sorting a list and parsing JSON
 ```
 
 ### Coroutine scope
