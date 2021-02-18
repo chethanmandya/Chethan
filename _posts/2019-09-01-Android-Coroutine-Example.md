@@ -262,3 +262,33 @@ class MyViewModel : ScopedViewModel() {
 
 <!--more-->
 
+Let's dissect the how Android coroutines code in the login function:
+
+```kotlin
+class LoginViewModel(
+    private val loginRepository: LoginRepository
+): ViewModel() {
+
+    fun login(username: String, token: String) {
+        // Create a new coroutine to move the execution off the UI thread
+        viewModelScope.launch(Dispatchers.IO) {
+            val jsonBody = "{ username: \"$username\", token: \"$token\"}"
+            loginRepository.makeLoginRequest(jsonBody)
+        }
+    }
+}
+```
+
+
+ - ViewModelScope is a predefined CoroutineScope that is included with the ViewModel KTX extensions. Note that all coroutines must run in a scope. A CoroutineScope manages one or more related coroutines.
+- launch is a function that creates a coroutine and dispatches the execution of its function body to the corresponding dispatcher.
+- Dispatchers.IO indicates that this coroutine should be executed on a thread reserved for I/O operations.
+
+The login function is executed as follows:
+
+- The app calls the login function from the View layer on the main thread.
+- launch creates a new coroutine, and the network request is made independently on a thread reserved for I/O operations.
+- While the coroutine is running, the login function continues execution and returns, possibly before the network request is finished. Note that for simplicity, the network response is ignored for now.
+
+
+
