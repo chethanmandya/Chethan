@@ -290,5 +290,8 @@ The login function is executed as follows:
 - launch creates a new coroutine, and the network request is made independently on a thread reserved for I/O operations.
 - While the coroutine is running, the login function continues execution and returns, possibly before the network request is finished. Note that for simplicity, the network response is ignored for now.
 
+### withContext() - 
+You can dispatch threads with fine-grained control. You can execute code within withcontext block without making any callbacks. 
 
+Please understand this, Using a dispatcher that uses a thread pool like Dispatchers.IO or Dispatchers.Default does not guarantee that the block executes on the same thread from top to bottom. In some situations, Kotlin coroutines might move execution to another thread after a suspend-and-resume. ***This means thread-local variables might not point to the same value for the entire withContext() block***.
 
