@@ -346,9 +346,10 @@ It is then lanuches new coroutine in background and that runs on default dispatc
 since we have used ***job.join()*** , it will wait until child coroutine completes, it doesn‘t closes VM until child coroutine completes. 
 
 
-### What is the output of this :
+### What should be output of below code ?
 
 ```kotlin
+
 suspend fun main() {
 
 
@@ -377,7 +378,7 @@ I'm working in thread DefaultDispatcher-worker-1
 
 Process finished with exit code 0
 
-‘‘‘
+```
 
 Since job.join() is called, runblocking going to execute on the same default thread rather on main thread. 
 
