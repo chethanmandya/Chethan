@@ -310,7 +310,7 @@ If you call runBlocking(Dispatchers.IO) from the main-thread, then the main-thre
 When CoroutineDispatcher is explicitly specified in the context, then the new coroutine runs in the context of the specified dispatcher while the current thread is blocked. If the specified dispatcher is an event loop of another runBlocking, then this invocation uses the outer event loop. 
 
 
-### what should be output of below code ?
+### What should be output of below code ?
 
 ```kotlin
 
@@ -346,7 +346,7 @@ It is then lanuches new coroutine in background and that runs on default dispatc
 since we have used ***job.join()*** , it will wait until child coroutine completes, it doesn‘t closes VM until child coroutine completes. 
 
 
-### what is the output of this :
+### What is the output of this :
 
 ```kotlin
 suspend fun main() {
@@ -376,6 +376,7 @@ World!
 I'm working in thread DefaultDispatcher-worker-1
 
 Process finished with exit code 0
+
 ‘‘‘
 
 Since job.join() is called, runblocking going to execute on the same default thread rather on main thread. 
