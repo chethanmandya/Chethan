@@ -295,3 +295,17 @@ You can dispatch threads with fine-grained control. You can execute code within 
 
 Please understand this, Using a dispatcher that uses a thread pool like Dispatchers.IO or Dispatchers.Default does not guarantee that the block executes on the same thread from top to bottom. In some situations, Kotlin coroutines might move execution to another thread after a suspend-and-resume. ***This means thread-local variables might not point to the same value for the entire withContext() block***.
 
+
+### what does below code signifies 
+
+```kotlin
+runBlocking(Dispatchers.IO) {
+  // Do IO work here
+}
+```
+
+If you call runBlocking(Dispatchers.IO) from the main-thread, then the main-thread will be blocked while the coroutine finishes on the IO-dispatcher.
+
+
+When CoroutineDispatcher is explicitly specified in the context, then the new coroutine runs in the context of the specified dispatcher while the current thread is blocked. If the specified dispatcher is an event loop of another runBlocking, then this invocation uses the outer event loop. 
+
