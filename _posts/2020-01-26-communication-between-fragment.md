@@ -17,7 +17,8 @@ If you are unable to use a shared ViewModel to communicate between your Fragment
  illustrated by the following sample code
 
 ```kotlin
-class SharedViewModel : ViewModel() {
+
+  class SharedViewModel : ViewModel() {
     val selected = MutableLiveData<Item>()
 
     fun select(item: Item) {
@@ -55,6 +56,7 @@ class DetailFragment : Fragment() {
     }
 }
 
+```
 
 
 Notice that both fragments retrieve the activity that contains them. That way, when the fragments each get the ViewModelProvider, they receive the same SharedViewModel instance, which is scoped to this activity.
