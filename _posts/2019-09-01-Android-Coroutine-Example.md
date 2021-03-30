@@ -427,7 +427,7 @@ private suspend fun downloadTask3(): Float {
 
 As we've used launch for starting these suspend functions, launch will execute them sequentially (one-by-one).This means that, downloadTask2() would start after downloadTask1() gets completed and downloadTask3() would start only after downloadTask2() gets completed.
 
-### Concurent Execution
+### concurrent Execution
 
 ```kotlin
 
