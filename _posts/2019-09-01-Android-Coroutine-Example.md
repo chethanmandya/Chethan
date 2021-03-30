@@ -382,3 +382,103 @@ Process finished with exit code 0
 
 Since job.join() is called, runblocking going to execute on the same default thread rather on main thread. 
 
+### Sequential Execution 
+
+```kotlin
+suspend fun main() {
+
+
+    val job = GlobalScope.launch(Dispatchers.Default) { // launch a new coroutine in background and continue
+
+        val currentMillis = System.currentTimeMillis()
+        val retVal1 = downloadTask1()
+        val retVal2 = downloadTask2()
+        val retVal3 = downloadTask3()
+
+        println("All tasks downloaded! $retVal1, $retVal2, $retVal3 in ${(System.currentTimeMillis() - currentMillis) / 1000} seconds")
+
+    }
+    job.join()
+
+}
+
+// Task 1 will take 1 seconds to complete download
+private suspend fun downloadTask1(): String {
+    kotlinx.coroutines.delay(1000);
+    println("downloadTask1")
+    return "Complete"
+}
+
+// Task 2 will take 1 seconds to complete download
+private suspend fun downloadTask2(): Int {
+    kotlinx.coroutines.delay(1000)
+    println("downloadTask2")
+    return 100
+}
+
+// Task 3 will take 1 seconds to complete download
+private suspend fun downloadTask3(): Float {
+    kotlinx.coroutines.delay(1000)
+    println("downloadTask3")
+    return 3.0f
+}
+
+```
+
+As we've used launch for starting these suspend functions, launch will execute them sequentially (one-by-one).This means that, downloadTask2() would start after downloadTask1() gets completed and downloadTask3() would start only after downloadTask2() gets completed.
+
+### Concurent Execution
+
+```kotlin
+
+suspend fun main() {
+
+
+    val job = GlobalScope.launch(Dispatchers.Default) { // launch a new coroutine in background and continue
+        val currentMillis = System.currentTimeMillis()
+        val retVal1 = async(Dispatchers.IO) { downloadTask1() }
+        val retVal2 = async(Dispatchers.IO) { downloadTask2() }
+        val retVal3 = async(Dispatchers.IO) { downloadTask3() }
+
+        println ("All tasks downloaded! ${retVal1.await()}, ${retVal2.await()}, ${retVal3.await()} in ${(System.currentTimeMillis() - currentMillis) / 1000} seconds\"")
+    }
+    job.join()
+
+}
+
+
+// Task 1 will take 1 seconds to complete download
+private suspend fun downloadTask1(): String {
+    kotlinx.coroutines.delay(1000);
+    println("downloadTask1")
+    return "Complete"
+}
+
+// Task 2 will take 1 seconds to complete download
+private suspend fun downloadTask2(): Int {
+    kotlinx.coroutines.delay(1000)
+    println("downloadTask2")
+    return 100
+}
+
+// Task 3 will take 1 seconds to complete download
+private suspend fun downloadTask3(): Float {
+    kotlinx.coroutines.delay(1000)
+    println("downloadTask3")
+    return 3.0f
+}
+
+```
+
+we've launched all 3 tasks concurrently.
+ If the tasks are independent and if they do not need other task's computation result, we can make them run concurrently.
+ They would start at same time and run concurrently in background. This can be done with async.
+ async returns an instance of Deffered<T> type, where T is type of data our suspend function returns.
+ 
+ For example,
+      downloadTask1() would return Deferred<String> as String is return type of function
+      downloadTask2() would return Deferred<Int> as Int is return type of function
+      downloadTask3() would return Deferred<Float> as Float is return type of function
+ 
+ We can use the return object from async of type Deferred<T> to get the returned value in T type.
+ That can be done with await() call. Check below code for example
