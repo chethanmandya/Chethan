@@ -87,6 +87,7 @@ To specify where the coroutines should run, Kotlin provides three dispatchers th
 To launch coroutine you need to provide its context on where it should launch, we have to two scopes to launch coroutines - CoroutineScope or use GlobalScope.
 
 ```kotlin
+
 // GlobalScope example
 class MainFragment : Fragment() {
     fun loadData() = GlobalScope.launch {  ...  }
@@ -114,6 +115,7 @@ The parent coroutine is launched via the launch function with the Main dispatche
 The child coroutine is launched via the async function with the IO dispatcher.
 
 ```kotlin
+
 val uiScope = CoroutineScope(Dispatchers.Main)
 fun loadData() = uiScope.launch {
     view.showLoading() // ui thread
@@ -128,6 +130,7 @@ fun loadData() = uiScope.launch {
 Above code can also be rewritten with withContext 
 
 ```kotlin
+
 val uiScope = CoroutineScope(Dispatchers.Main)
 fun loadData() = uiScope.launch {
     view.showLoading() // ui thread
@@ -204,6 +207,7 @@ fun loadData() = uiScope.launch {
 
 
 ### Lifecycle aware coroutine scope
+
 With a release of android architecture components, we can create lifecycle aware coroutine scope which will cancel itself when Activity#onDestroy event occurs.
 
 ```kotlin
@@ -470,7 +474,7 @@ private suspend fun downloadTask3(): Float {
 
 ```
 
-we've launched all 3 tasks concurrently.
+We've launched all 3 tasks concurrently.
  If the tasks are independent and if they do not need other task's computation result, we can make them run concurrently.
  They would start at same time and run concurrently in background. This can be done with async.
  async returns an instance of Deffered<T> type, where T is type of data our suspend function returns.
