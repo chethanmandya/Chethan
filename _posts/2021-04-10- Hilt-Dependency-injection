@@ -1,7 +1,17 @@
 
-Hilt Dependency injection library
+---
+title: Hilt Dependency injection 
+tags: Android
+article_header:
+  type: cover
+  image:
+---
 
-Dependency injection is a programming pattern.
+
+
+Hilt is the next generation dependency injection framework from Google. It's built on top of Dagger and simplifies DI greatly.Hilt provides a standard way
+for your application to do DI by providing a container for every Android class in your project and automatically managing its lifecycle. Hilt is built on top 
+of the well-known DI library Dagger , so you can benefit from Dagger in terms of compile-time accuracy, run-time performance, scalability, and Android Studio support . See Hilt and Dagger for more information
 
 
 ###Setting up Hilt
