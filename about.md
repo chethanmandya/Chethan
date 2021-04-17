@@ -1,13 +1,7 @@
-
-
- <div class="col"> 
-    <div class="col"> Chethan  </div>
-    <div class="col">  Mandya </div>
-    <div class="col">  </div>
-    <div class="col">  </div>
-    <div class="col">  </div>
-  
-  </div>
+<div class="row">
+  <div class="column">chethan</div>
+  <div class="column">mandya</div>
+</div>
   
 I am a software geek, working at YACHT/Philips and developing Android and iOS apps is my art. I have 8+ years of experience on mobile application development.
 
