@@ -1,6 +1,6 @@
 
 
- <div class="row"> 
+ <div class="col"> 
     <div class="col"> Chethan  </div>
     <div class="col">  Mandya </div>
     <div class="col">  </div>
