@@ -1,4 +1,3 @@
-
 ---
 title: Hilt Dependency injection 
 tags: Android
@@ -8,19 +7,21 @@ article_header:
 ---
 
 
-
 Hilt is the next generation dependency injection framework from Google. It's built on top of Dagger and simplifies DI greatly.Hilt provides a standard way
 for your application to do DI by providing a container for every Android class in your project and automatically managing its lifecycle. Hilt is built on top 
 of the well-known DI library Dagger , so you can benefit from Dagger in terms of compile-time accuracy, run-time performance, scalability, and Android Studio support . See Hilt and Dagger for more information
 
 
-###Setting up Hilt
-To set up Hilt in your app, follow the Gradle Build Setup guide first.After installing all the dependencies and plugins, 
+### Setting up Hilt
+
+To set up Hilt in your app, follow the [Gradle Build Setup guide first](https://dagger.dev/hilt/gradle-setup). After installing all the dependencies and plugins, 
 annotate your Application class with @HiltAndroidApp to use Hilt. You don’t need to do anything else or otherwise directly invoke it.
 
 ``` Kotlin
+
 @HiltAndroidApp
 class App : Application()
+
 ```
 
 Defining and injecting dependencies
@@ -37,9 +38,11 @@ There are three ways to define a binding in Hilt.
 Any class can have a constructor annotated with @Inject which makes it available as a dependency anywhere in your project.
 
 ``` Kotlin
+
 class YourClassName @Inject constructor() {
   ...
 }
+
 ``` 
 
 
@@ -55,7 +58,8 @@ Option 1: use @Binds to create binding for an interface
 If you want to use OatMilk in your code when Milk is requested, create an abstract method inside a module and annotate it with @Binds. Note that OatMilk must itself be injectable for this to work, 
 which you can achieve by annotating its constructor with @Inject.
 
-``` Kotlin 
+``` Kotlin
+
 interface Milk { ... }
 
 class OatMilk @Inject constructor(): Milk {
@@ -68,6 +72,7 @@ abstract class MilkModule {
   @Binds
   abstract fun bindMilk(oatMilk: OatMilk): Milk
 }
+
 ```
 
 
@@ -76,6 +81,7 @@ When an instance can’t be constructed directly, you can create a provider. A p
 An example of this is a system service such as ConnectivityManager which needs to be obtained from a context.
 
 ```Kotlin
+
 @Module
 @InstallIn(ApplicationComponent::class)
 object ConnectivityManagerModule {
@@ -84,6 +90,7 @@ object ConnectivityManagerModule {
     @ApplicationContext context: Context
   ) = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 }
+
 ```
 
 The Context object is injectable by default, as long as you annotate it with either @ApplicationContext or @ActivityContext.
@@ -95,7 +102,8 @@ Once your dependencies are injectable, you can inject them using Hilt in two way
 
 ### As constructor parameters
 
-``` Kotlin 
+``` Kotlin
+
 interface Milk { ... }
 interface Coffee { ... }
 
@@ -112,7 +120,8 @@ If the constructor is marked with @Inject, Hilt injects all of the parameters ac
 
 ### As fields
 
-``` Kotlin 
+``` Kotlin
+
 interface Milk { ... }
 interface Coffee { ... }
 
@@ -123,6 +132,7 @@ class LatteActivity : AppCompatActivity() {
   
   ...
 }
+
 ```
 
 
@@ -147,6 +157,7 @@ Most of your entry points will be one of these so-called Android Entry Points:
 class LatteActivity : AppCompatActivity() {
   ...
 }
+
 ```
 
 
@@ -160,6 +171,7 @@ ViewModels use the special @ViewModelInject annotation which allows Hilt to inje
 similar to how @Inject works for other classes.
 
 ``` Kotlin
+
 interface Milk { ... }
 interface Coffee { ... }
 
