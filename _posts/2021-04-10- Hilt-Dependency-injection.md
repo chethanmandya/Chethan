@@ -12,16 +12,17 @@ for your application to do DI by providing a container for every Android class i
 of the well-known DI library Dagger , so you can benefit from Dagger in terms of compile-time accuracy, run-time performance, scalability, and Android Studio support . See Hilt and Dagger for more information
 
 
-###Setting up Hilt
-To set up Hilt in your app, follow the Gradle Build Setup guide first.After installing all the dependencies and plugins, 
+### Setting up Hilt
+
+To set up Hilt in your app, follow the [Gradle Build Setup guide first](https://dagger.dev/hilt/gradle-setup). After installing all the dependencies and plugins, 
 annotate your Application class with @HiltAndroidApp to use Hilt. You don’t need to do anything else or otherwise directly invoke it.
 
-``` Kotlin
+    ``` Kotlin
 
-@HiltAndroidApp
-class App : Application()
+    @HiltAndroidApp
+    class App : Application()
 
-```
+    ```
 
 Defining and injecting dependencies
 
