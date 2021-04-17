@@ -1,4 +1,3 @@
-
 ---
 title: Hilt Dependency injection 
 tags: Android
@@ -6,7 +5,6 @@ article_header:
   type: cover
   image:
 ---
-
 
 
 Hilt is the next generation dependency injection framework from Google. It's built on top of Dagger and simplifies DI greatly.Hilt provides a standard way
