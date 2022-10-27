@@ -12,6 +12,8 @@ LiveData is an lifecycle aware obervable data holder ( means it knows the lifecy
 ### StateFlow
 StateFlow(hot stream)  does similar things like LiveData but it is made using flow by kotlin guys and  only difference compare to LiveData is its not lifecycle aware but this is also been solved using repeatOnLifecycle api's, So whatever LiveData can do StateFlow can do much better with power of flow's api.
 
+LiveData.observe() automatically unregisters the consumer when the view goes to the STOPPED state, whereas collecting from a StateFlow or any other flow does not stop collecting automatically. To achieve the same behavior,you need to collect the flow from a Lifecycle.repeatOnLifecycle block.
+
 ### SharedFlow
 SharedFlow(hot stream) - name itself says it is shared, this flow can be shared by multiple consumers, I mean if multiple collect calls happening on the sharedflow there will be a single flow which will get shared across all the consumers unlike normal flow.
 
