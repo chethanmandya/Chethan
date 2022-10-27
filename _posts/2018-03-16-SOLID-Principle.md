@@ -16,6 +16,11 @@ article_header:
 SOLID Principles and Design Patterns plays a key role in achieving all of the below points.
 
 
+
+
+
+
+
 ### SOLID Introduction 
 1. SOLID principles are the design principles that enable us to manage most of the software design problems
 2. The term SOLID is an acronym for five design principles intended to make software designs more understandable, flexible and maintainable
