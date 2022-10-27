@@ -6,8 +6,6 @@ article_header:
   image:
 ---
 
-
-
 ### LiveData
 LiveData is an lifecycle aware obervable data holder ( means it knows the lifecycle of the activity or an fragment) use it when you play with UI elements(views).
 
