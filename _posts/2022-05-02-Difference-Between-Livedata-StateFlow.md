@@ -1,24 +1,11 @@
+
 ---
 title: Difference between LiveData, StateFlow, SharedFlow, Flow.
-tags: AndroidJetPack
-header:
-  theme: dark
-  background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
+tags: Android
 article_header:
-  type: overlay
-  theme: dark
-  background_color: '#203028'
-  background_image:
-    gradient: 'linear-gradient(135deg, rgba(34, 139, 87 , .4), rgba(139, 34, 139, .4))'
-   
+  type: cover
+  image:
 ---
-
-
-
-
-
-
-
 
 
 ### LiveData
