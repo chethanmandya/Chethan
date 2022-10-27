@@ -1,5 +1,5 @@
 ---
-title: Difference between LiveData / StateFlow / SharedFlow / Flow.
+title: Difference between LiveData, StateFlow, SharedFlow, Flow.
 tags: AndroidJetPack
 header:
   theme: dark
