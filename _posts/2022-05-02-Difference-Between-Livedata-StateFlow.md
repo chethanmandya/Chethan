@@ -7,7 +7,9 @@ article_header:
 ---
 
 ### LiveData
-LiveData is an lifecycle aware obervable data holder ( means it knows the lifecycle of the activity or an fragment) use it when you play with UI elements(views).LiveData is synchronous and operates on the main (UI) thread by default, which simplifies its usage for updating UI components directly.
+LiveData is an lifecycle aware obervable data holder ( means it knows the lifecycle of the activity or an fragment) use it when you play with UI elements(views).
+
+LiveData is synchronous and operates on the main (UI) thread by default, which simplifies its usage for updating UI components directly.
 
 LiveData is part of the Android Architecture Components and is primarily used for observing changes to data in a lifecycle-aware manner.
 
