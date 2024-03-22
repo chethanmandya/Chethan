@@ -18,16 +18,16 @@ StateFlow(hot stream)  does similar things like LiveData but it is made using fl
 
 LiveData.observe() automatically unregisters the consumer when the view goes to the STOPPED state, whereas collecting from a StateFlow or any other flow does not stop collecting automatically. To achieve the same behavior,you need to collect the flow from a Lifecycle.repeatOnLifecycle block.
 
-StateFlow is part of the Kotlin Coroutines library and provides a flow-based API for managing and observing state changes.
+- StateFlow is part of the Kotlin Coroutines library and provides a flow-based API for managing and observing state changes.
 It is designed to be used with Kotlin coroutines, making it suitable for asynchronous programming and working with suspending functions.
 
-StateFlow is sometimes referred to as a "hot stream" because it emits values regardless of whether there are active subscribers or not. This contrasts with "cold streams," which only produce values when there are active subscribers.
+- StateFlow is sometimes referred to as a "hot stream" because it emits values regardless of whether there are active subscribers or not. This contrasts with "cold streams," which only produce values when there are active subscribers.
 
-In the case of StateFlow, when a new value is emitted, it will be delivered to all active subscribers immediately, regardless of when they subscribed. This behavior is similar to traditional event buses or subjects in reactive programming.
+- In the case of StateFlow, when a new value is emitted, it will be delivered to all active subscribers immediately, regardless of when they subscribed. This behavior is similar to traditional event buses or subjects in reactive programming.
 
-The term "hot stream" emphasizes that StateFlow is continuously emitting values, and subscribers can join in and receive these values at any point in time. It's like a stream of water that is flowing continuously, regardless of whether there's someone there to collect it or not.
+- The term "hot stream" emphasizes that StateFlow is continuously emitting values, and subscribers can join in and receive these values at any point in time. It's like a stream of water that is flowing continuously, regardless of whether there's someone there to collect it or not.
 
-In contrast, a "cold stream" only starts producing values when a subscriber starts listening to it. This means that if there are no subscribers, the stream remains inactive and does not emit any values.
+- In contrast, a "cold stream" only starts producing values when a subscriber starts listening to it. This means that if there are no subscribers, the stream remains inactive and does not emit any values.
 
 So, when developers refer to StateFlow as a "hot stream," they are highlighting its behavior of continuously emitting values regardless of subscriber status, which can be beneficial in certain scenarios, especially when dealing with real-time or constantly changing data.
 
