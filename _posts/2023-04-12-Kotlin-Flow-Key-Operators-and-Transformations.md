@@ -6,7 +6,7 @@ tags: Kotlin
 In Kotlin, Flow is a type representing a stream of values that are sequentially emitted over time. Flow operators and transformations allow you to perform various operations on flows, such as filtering, transforming, combining, and handling errors. Let's go through some key operators and transformations with examples:
 
 
-1. ### map :
+## 1.map :
    Applies a transformation to each value emitted by the flow.
 
    ```kotlin
@@ -20,7 +20,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
    }
    ```
 
-3. ## filter:
+## 2.filter:
    Filters values emitted by the flow based on a given predicate.
 
    ```kotlin
@@ -34,7 +34,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
    }
    ```
 
-4. ## transform:
+## 3.transform:
    Allows more complex transformations by emitting multiple values and suspending the execution of the collector.
 
    ```kotlin
@@ -51,7 +51,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
    }
    ```
 
-5. ## flatMapConcat:
+## 4.flatMapConcat:
    Maps each value to a flow and concatenates the resulting flows.
 
    ```kotlin
@@ -70,7 +70,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
    }
    ```
 
-6. ## zip:
+## 5.zip:
    Combines corresponding values of multiple flows into pairs.
 
    ```kotlin
@@ -85,7 +85,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
    }
    ```
 
-7. ## catch:
+## 6.catch:
    Handles exceptions thrown by upstream flows, allowing to emit alternative values or resume with a fallback.
 
    ```kotlin
@@ -105,7 +105,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
    ```
 
 
-8. ## debounce:
+## 7.debounce:
    Delays emissions from the upstream flow until a specified period of time has passed without any new emissions. This is useful for scenarios like filtering out rapid, successive updates.
 
     ```kotlin
@@ -121,7 +121,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-9. ## scan:
+## 8.scan:
    Accumulates values emitted by the flow over time, applying a function to each new value and the previously accumulated value.
 
     ```kotlin
@@ -135,7 +135,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-10. ## distinctUntilChanged: 
+## 9.distinctUntilChanged: 
    Filters out consecutive duplicate values emitted by the flow, allowing only distinct consecutive values.
 
     ```kotlin
@@ -149,7 +149,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-10. ## merge: 
+## 10.merge: 
    Merges multiple flows into a single flow, emitting values from all of them concurrently.
 
     ```kotlin
@@ -167,7 +167,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-11. ## combine: 
+## 11.combine: 
    Combines values from multiple flows into a single flow of tuples, emitting a new tuple whenever any of the input flows emit a value.
 
     ```kotlin
@@ -183,7 +183,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-12. ## take: 
+## 12.take: 
    Limits the number of values emitted by the flow to a specified count.
 
     ```kotlin
@@ -197,7 +197,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-13. ## takeWhile: 
+## 13.takeWhile: 
    Emits values from the flow while the given predicate function returns true. Once the predicate returns false, it stops the emission.
 
     ```kotlin
@@ -211,7 +211,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-14. ## flatMapMerge: 
+## 14.flatMapMerge: 
    Maps each value to a flow and merges the resulting flows concurrently.
 
     ```kotlin
@@ -232,7 +232,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-15. ## retry: 
+## 15.retry: 
    Re-subscribes to the upstream flow when an exception occurs, up to a specified number of times.
 
     ```kotlin
@@ -251,7 +251,7 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-16. ## distinct: 
+## 16.distinct: 
    Filters out duplicate values emitted by the flow, allowing only distinct values.
 
     ```kotlin
