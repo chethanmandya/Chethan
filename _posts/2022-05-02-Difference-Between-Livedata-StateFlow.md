@@ -17,17 +17,19 @@ LiveData is synchronous and operates on the main (UI) thread by default, which s
 
 ### Flow
 
-- Flow represents a stream of values that are emitted asynchronously and sequentially over time.
+Flow (cold stream) - A Flow is more commonly used to represent a stream of immutable values emitted over time. While these values may represent the state of something, they are not typically thought of as mutable state themselves. Instead, the Flow represents a sequence of immutable snapshots of some potentially changing state.
+
 
 - It is cold, meaning it starts emitting values only when a terminal operator (such as collect, toList, first, etc.) is applied to it.
 
-- Flow is designed for handling streams of data in a reactive and asynchronous manner, such as processing large data sets, handling network responses, or observing changes in database queries.
-
 - Multiple collectors can be attached to a single Flow, and each collector will receive its own independent stream of values.
 
-Flow (cold stream) - A Flow is more commonly used to represent a stream of immutable values emitted over time. While these values may represent the state of something, they are not typically thought of as mutable state themselves. Instead, the Flow represents a sequence of immutable snapshots of some potentially changing state.
+- LiveData.observe() automatically unregisters the consumer when the view goes to the STOPPED state, whereas collecting from a StateFlow or any other flow does not stop collecting automatically. To achieve the same behavior,you need to collect the flow from a Lifecycle.repeatOnLifecycle block.
+
+- Flow / StateFlow is part of the Kotlin Coroutines library and provides a flow-based API for managing and observing state changes.It is designed to be used with Kotlin coroutines, making it suitable for asynchronous programming and working with suspending functions
 
 ### StateFlow
+
 - StateFlow is a hot observable data holder that emits the current state and emits updates to its state over time.
   
 - It is designed for representing a single mutable state within an application, such as UI state or shared application state.
