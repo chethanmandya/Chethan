@@ -6,7 +6,7 @@ article_header:
   image:
 ---
 
-Certainly! Here are 15 common transformation functions in Kotlin with examples:
+In Kotlin, transformation functions are used to convert or modify data in a variety of ways. These functions are typically applied to collections, sequences, or flows, allowing you to perform operations such as mapping, filtering, sorting, and more. Here are some commonly used transformation functions:
 
 1. **map**: Transforms each element in a collection, sequence, or flow according to a given transformation function.
 
