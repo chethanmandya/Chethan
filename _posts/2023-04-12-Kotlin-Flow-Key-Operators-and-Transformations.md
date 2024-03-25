@@ -149,8 +149,6 @@ In Kotlin, Flow is a type representing a stream of values that are sequentially 
     }
     ```
 
-Certainly! Let's discuss a few more operators commonly used in Kotlin Flow:
-
 10. ## merge: 
    Merges multiple flows into a single flow, emitting values from all of them concurrently.
 
