@@ -188,3 +188,68 @@ Certainly! Let's discuss a few more operators commonly used in Kotlin Flow:
     }
     ```
 
+13. **takeWhile**: Emits values from the flow while the given predicate function returns true. Once the predicate returns false, it stops the emission.
+
+    ```kotlin
+    import kotlinx.coroutines.flow.*
+    import kotlinx.coroutines.runBlocking
+    
+    fun main() = runBlocking {
+        (1..10).asFlow()
+            .takeWhile { it <= 5 }
+            .collect { println(it) } // prints: 1 2 3 4 5
+    }
+    ```
+
+14. **flatMapMerge**: Maps each value to a flow and merges the resulting flows concurrently.
+
+    ```kotlin
+    import kotlinx.coroutines.delay
+    import kotlinx.coroutines.flow.*
+    import kotlinx.coroutines.runBlocking
+    
+    fun main() = runBlocking {
+        (1..3).asFlow()
+            .flatMapMerge { value ->
+                flow {
+                    emit(value)
+                    delay(100)
+                    emit(value * 2)
+                }
+            }
+            .collect { println(it) } // prints: 1 2 2 4 3 6
+    }
+    ```
+
+15. **retry**: Re-subscribes to the upstream flow when an exception occurs, up to a specified number of times.
+
+    ```kotlin
+    import kotlinx.coroutines.flow.*
+    import kotlinx.coroutines.runBlocking
+    import java.io.IOException
+    
+    fun main() = runBlocking {
+        flow {
+            emit(1)
+            throw IOException("Network error")
+        }
+        .retry(2) { cause -> cause is IOException }
+        .catch { println("Caught exception: $it") } // prints: Caught exception: java.io.IOException: Network error
+        .collect { println(it) } // Won't be executed due to exception
+    }
+    ```
+
+16. **distinct**: Filters out duplicate values emitted by the flow, allowing only distinct values.
+
+    ```kotlin
+    import kotlinx.coroutines.flow.*
+    import kotlinx.coroutines.runBlocking
+    
+    fun main() = runBlocking {
+        flowOf(1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4)
+            .distinct()
+            .collect { println(it) } // prints: 1 2 3 4
+    }
+    ```
+
+These operators and transformations provide various functionalities for processing and manipulating data streams in Kotlin Flow, making it a powerful tool for handling asynchronous data in a concise and efficient manner.
