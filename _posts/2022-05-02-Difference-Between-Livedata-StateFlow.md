@@ -86,3 +86,9 @@ Here's a more detailed explanation:
 
 In summary, backpressure handling is a crucial aspect of asynchronous programming that ensures efficient data processing and resource utilization by allowing consumers to control the flow of data from producers. It prevents overload and system instability by dynamically adjusting the rate of data emission based on the processing capacity of consumers.
 
+
+### Practical Use Cases in Android Development : 
+
+Understanding hot and cold flows is fundamental in Android app development. Choose the appropriate flow type based on your app's requirements.
+Use hot flows for real-time features like chat or live updates.
+Opt for cold flows when data replayability and ensuring all users see the same content are critical, such as in news or on-demand content apps.
