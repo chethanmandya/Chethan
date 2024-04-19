@@ -13,7 +13,6 @@ article_header:
 
 - LiveData is part of the Android Architecture Components and is primarily used for observing changes to data in a lifecycle-aware manner.
 
-- LiveData is synchronous and operates on the main (UI) thread by default, which simplifies its usage for updating UI components directly.
 
 ### Flow
 
