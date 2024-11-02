@@ -7,7 +7,7 @@ article_header:
 ---
 
 
-### Hot Stream (LiveData)
+### LiveData - Hot Stream 
 In LiveData, data emissions start as soon as an observer is attached. The data flow continues, and if the observer isn’t actively consuming it, it may miss out on some values. Here's an example:
 
 kotlin
@@ -36,7 +36,7 @@ Here, as soon as emitData() is called, LiveData starts emitting values 1, 2, and
 If an observer attaches after some of the values have been emitted, it will only receive the latest value, not the values it missed.
 Key Takeaway: LiveData behaves as a hot stream, meaning it’s always ready to emit data to any observer that attaches, regardless of whether it’s actively collecting or not.
 
-### Cold Stream (Flow)
+### Flow - Cold Stream 
 With Flow, data emissions don’t start until a collector actively collects it. This ensures that each collector gets the full sequence of values from the beginning. Here’s an example:
 
 kotlin
