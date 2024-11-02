@@ -200,12 +200,16 @@ class ItemViewModel : ViewModel() {
     }
 }
 
-```
+
 
 // In Activity/Fragment
 itemViewModel.getItems().observe(viewLifecycleOwner, Observer { items ->
     recyclerViewAdapter.submitList(items)
 })
+
+
+```
+
 Advantages: Automatically handles lifecycle events, preventing memory leaks and crashes.
 Use Case for Flow
 Flow is suitable for more complex scenarios, particularly when you don't require lifecycle awareness, such as background data processing or combining multiple data sources.
