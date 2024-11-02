@@ -78,8 +78,8 @@ With LiveData, since it retains the last emitted value, re-attaching an observer
 Example with LiveData
 Imagine a LiveData used for navigation events:
 
-kotlin
-Copy code
+```kotlin
+
 val navigationEvent = MutableLiveData<Boolean>()
 
 fun navigate() {
@@ -95,6 +95,8 @@ navigationEvent.observe(owner, Observer { shouldNavigate ->
         navigationEvent.value = false
     }
 })
+
+```
 Problem: If the observer is re-attached (e.g., on rotation or configuration change), it will re-trigger the navigation event because LiveData will emit the last known value (true), causing unintended navigation.
 
 2. Flow Example - Better for One-Time Events
@@ -103,8 +105,7 @@ With Flow, you can emit values on-demand, and each collection is independent, so
 Example with SharedFlow in Flow
 A SharedFlow can be used here to emit one-time events. By default, SharedFlow does not retain any value and only emits when there is an active collector.
 
-kotlin
-Copy code
+```kotlin
 // Define a SharedFlow with no replay cache (one-time emission)
 val navigationEvent = MutableSharedFlow<Unit>(replay = 0)
 
@@ -119,10 +120,118 @@ lifecycleScope.launchWhenStarted {
         println("Navigating...")
     }
 }
+
+```
 Explanation:
 
 navigationEvent.emit(Unit) only emits when there’s an active collector.
 SharedFlow with replay = 0 ensures that no value is retained, so each collector will only get new emissions, not the last value.
+
+
+### Combining Data Streams
+Using LiveData
+When working with multiple LiveData sources, you often need to use MediatorLiveData or Transformations to combine them. This can become cumbersome and less flexible, especially when dealing with multiple sources.
+
+Example with LiveData
+
+```kotlin
+
+class MyViewModel : ViewModel() {
+    private val firstLiveData: MutableLiveData<Int> = MutableLiveData()
+    private val secondLiveData: MutableLiveData<Int> = MutableLiveData()
+
+    // Combine two LiveData sources using MediatorLiveData
+    val combinedLiveData: MediatorLiveData<Int> = MediatorLiveData<Int>().apply {
+        addSource(firstLiveData) { value = combineValues(firstLiveData.value, secondLiveData.value) }
+        addSource(secondLiveData) { value = combineValues(firstLiveData.value, secondLiveData.value) }
+    }
+
+    private fun combineValues(first: Int?, second: Int?): Int {
+        return (first ?: 0) + (second ?: 0)
+    }
+}
+
+```
+Limitations:
+
+The code can become verbose and harder to maintain with many sources.
+The combination logic needs to be explicitly handled with MediatorLiveData.
+Using Flow
+In Flow, combining streams is more straightforward and expressive, thanks to operators like combine, zip, and flatMap.
+
+Example with Flow
+
+```kotlin
+
+class MyViewModel : ViewModel() {
+    private val firstFlow = MutableStateFlow<Int>(0)
+    private val secondFlow = MutableStateFlow<Int>(0)
+
+    // Combine two Flows using combine operator
+    val combinedFlow: StateFlow<Int> = combine(firstFlow, secondFlow) { first, second ->
+        first + second
+    }.stateIn(viewModelScope, SharingStarted.Lazily, 0)
+}
+
+```
+
+Benefits:
+
+More concise and readable code.
+Rich set of operators makes it easy to manipulate and combine streams without boilerplate.
+2. Example Use Cases
+Use Case for LiveData
+LiveData is great for scenarios where you need lifecycle-aware data that directly binds to UI components.
+
+Example Use Case: Observing a list of items for a RecyclerView.
+
+```kotlin
+
+class ItemViewModel : ViewModel() {
+    private val itemsLiveData = MutableLiveData<List<Item>>()
+
+    fun fetchItems() {
+        // Fetch items and post them to LiveData
+        itemsLiveData.postValue(getItemsFromDataSource())
+    }
+
+    fun getItems(): LiveData<List<Item>> {
+        return itemsLiveData
+    }
+}
+
+```
+
+// In Activity/Fragment
+itemViewModel.getItems().observe(viewLifecycleOwner, Observer { items ->
+    recyclerViewAdapter.submitList(items)
+})
+Advantages: Automatically handles lifecycle events, preventing memory leaks and crashes.
+Use Case for Flow
+Flow is suitable for more complex scenarios, particularly when you don't require lifecycle awareness, such as background data processing or combining multiple data sources.
+
+Example Use Case: Fetching data from multiple APIs and combining the results.
+
+```kotlin
+
+class DataViewModel : ViewModel() {
+    private val userFlow = flow { emit(fetchUserData()) }
+    private val postsFlow = flow { emit(fetchUserPosts()) }
+
+    val userWithPostsFlow: Flow<UserWithPosts> = combine(userFlow, postsFlow) { user, posts ->
+        UserWithPosts(user, posts)
+    }
+
+    init {
+        viewModelScope.launch {
+            userWithPostsFlow.collect { userWithPosts ->
+                // Update UI with combined user and posts data
+            }
+        }
+    }
+}
+```
+Advantages: Easier to combine data streams, apply transformations, and handle asynchronous data fetching without needing lifecycle awareness.
 
 ### StateFlow
 
