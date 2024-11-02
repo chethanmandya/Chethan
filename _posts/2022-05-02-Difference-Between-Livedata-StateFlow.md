@@ -69,6 +69,60 @@ Each time you call emitData().collect {...}, it starts the data sequence from th
 Key Takeaway: Flow is a cold stream by default, meaning data won’t be emitted until a collector starts consuming it. Each collector receives a fresh, complete sequence, ensuring that no values are missed.
 
 
+### LiveData: Not ideal for one-time events, as it re-emits the last value when an observer re-attaches, which can lead to repeated events.
+
+
+1. LiveData Example - Not Ideal for One-Time Events
+With LiveData, since it retains the last emitted value, re-attaching an observer will trigger the last known value again. This can lead to repeated events, which is usually undesirable for one-time events such as navigation or showing an error message.
+
+Example with LiveData
+Imagine a LiveData used for navigation events:
+
+kotlin
+Copy code
+val navigationEvent = MutableLiveData<Boolean>()
+
+fun navigate() {
+    navigationEvent.value = true // Emit navigation event
+}
+
+// Observer attaches (e.g., in Activity or Fragment)
+navigationEvent.observe(owner, Observer { shouldNavigate ->
+    if (shouldNavigate == true) {
+        // Navigate to another screen
+        println("Navigating...")
+        // Reset the event to prevent repeated navigation
+        navigationEvent.value = false
+    }
+})
+Problem: If the observer is re-attached (e.g., on rotation or configuration change), it will re-trigger the navigation event because LiveData will emit the last known value (true), causing unintended navigation.
+
+2. Flow Example - Better for One-Time Events
+With Flow, you can emit values on-demand, and each collection is independent, so values aren’t retained between collectors unless you’re using StateFlow or SharedFlow. You can even use SharedFlow to specifically control how values are retained and replayed, making it more suitable for one-time events.
+
+Example with SharedFlow in Flow
+A SharedFlow can be used here to emit one-time events. By default, SharedFlow does not retain any value and only emits when there is an active collector.
+
+kotlin
+Copy code
+// Define a SharedFlow with no replay cache (one-time emission)
+val navigationEvent = MutableSharedFlow<Unit>(replay = 0)
+
+suspend fun navigate() {
+    navigationEvent.emit(Unit) // Emit navigation event once
+}
+
+// Collector (e.g., in Activity or Fragment)
+lifecycleScope.launchWhenStarted {
+    navigationEvent.collect {
+        // Navigate to another screen
+        println("Navigating...")
+    }
+}
+Explanation:
+
+navigationEvent.emit(Unit) only emits when there’s an active collector.
+SharedFlow with replay = 0 ensures that no value is retained, so each collector will only get new emissions, not the last value.
 
 ### StateFlow
 
