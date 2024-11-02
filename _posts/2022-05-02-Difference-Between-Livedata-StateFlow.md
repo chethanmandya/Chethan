@@ -11,7 +11,8 @@ article_header:
 In LiveData, data emissions start as soon as an observer is attached. The data flow continues, and if the observer isn’t actively consuming it, it may miss out on some values. Here's an example:
 
 kotlin
-Copy code
+
+```kotlin
 val liveData = MutableLiveData<Int>()
 
 fun emitData() {
@@ -28,6 +29,7 @@ liveData.observe(owner, Observer { value ->
 
 // Start emitting data
 emitData()
+```
 Explanation:
 
 Here, as soon as emitData() is called, LiveData starts emitting values 1, 2, and 3.
@@ -38,7 +40,7 @@ Key Takeaway: LiveData behaves as a hot stream, meaning it’s always ready to e
 With Flow, data emissions don’t start until a collector actively collects it. This ensures that each collector gets the full sequence of values from the beginning. Here’s an example:
 
 kotlin
-Copy code
+```kotlin
 fun emitData(): Flow<Int> = flow {
     // Emit values with a delay to simulate a stream of data
     emit(1)
@@ -58,6 +60,8 @@ fun observeData() {
 // Invoke collection
 observeData()
 Explanation:
+
+```
 
 The emitData() function returns a Flow that emits values 1, 2, and 3.
 The data emission won’t start until collect is called in observeData().
