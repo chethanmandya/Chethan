@@ -312,34 +312,7 @@ Here are a few reasons why StateFlow does not support multiple subscribers:
 - Intended use case: StateFlow is commonly used to represent UI state in applications such as Android. In such scenarios, having a single observer is often sufficient and aligns well with the unidirectional data flow architecture pattern commonly used in modern UI frameworks.
 
 
-
-
-### Difference between sharedflow and stateflow : 
-
-SharedFlow and StateFlow are both provided by Kotlin coroutines as part of the kotlinx.coroutines library, and they serve as mechanisms for handling flows of data asynchronously. However, they have some differences in their behavior and usage:
-
-1. **Mutability**:
-   - **StateFlow**: StateFlow is mutable and can be updated directly by calling its `value` property. It is typically used for representing and observing state changes within a single component or module.
-   - **SharedFlow**: SharedFlow is immutable and cannot be directly updated after creation. Instead, it emits values through its `emit()` function. Once created, the values emitted by a SharedFlow cannot be modified or replaced.
-
-2. **Sharing**:
-   - **StateFlow**: StateFlow is designed for sharing a single source of truth about a particular piece of data. It is often used for representing UI-related state within an Android application or for managing state within a coroutine scope.
-   - **SharedFlow**: SharedFlow is designed for sharing streams of values across multiple consumers. It allows multiple subscribers to receive the same stream of data independently, and each subscriber receives its own copy of the emitted values.
-
-3. **Cold vs. Hot**:
-   - **StateFlow**: StateFlow is a hot flow, meaning A hot flow emits data continuously, regardless of whether someone is listening. It's like a live broadcast that starts streaming data as soon as it's created. If you're not actively observing, you might miss some events.
-     
-   - **SharedFlow**: SharedFlow is a Hot flow, Both SharedFlow and StateFlow are built upon the concept of a "hot" flow. 
-  
-   - **Flow** : On the other hand, a cold flow behaves like a recorded video. It only starts emitting data when someone subscribes to it, ensuring that no events are missed. It's like playing a video from the beginning every time someone hits play.
-
-4. **Backpressure Handling**:
-   - **StateFlow**: StateFlow does not support backpressure handling directly. It emits values synchronously to its observers, and if the observer is unable to keep up with the emission rate, it may miss some updates.
-   - **SharedFlow**: SharedFlow supports backpressure handling through its configuration options. It can buffer emitted values or suspend the emitter when the downstream collector is unable to keep up with the emission rate, ensuring that no data is lost.
-
-In summary, StateFlow is primarily used for representing and observing mutable state within a single component, while SharedFlow is used for sharing streams of immutable data across multiple consumers. StateFlow is hot and continuously emits values, whereas SharedFlow is cold and only emits values when there are active subscribers. Additionally, SharedFlow provides more flexibility for handling backpressure compared to StateFlow.
-
-**Summary Table**
+**When to use sharedFlow**
 
 | **Use Case**                            | **Example**                           | **Why SharedFlow**                                             |
 |-----------------------------------------|---------------------------------------|-----------------------------------------------------------------|
@@ -348,6 +321,12 @@ In summary, StateFlow is primarily used for representing and observing mutable s
 | **Real-time Data Streams**              | GPS updates, WebSocket messages       | Emits data as it comes, suitable for real-time notifications    |
 | **UI State Across Multiple Collectors** | Loading spinners across Fragments     | Allows multiple listeners to stay synchronized with minimal setup |
 | **Continuous Streams without Retention**| Sensor data (e.g., location)          | Avoids retaining old data; broadcasts only latest values        |
+
+
+**When to Avoid SharedFlow**
+If you need to keep the last known state, StateFlow may be more suitable because it automatically retains and emits the latest value to any new collectors.
+
+
 
 ### What is backpressure handling ?
 Backpressure handling is a mechanism used to manage the flow of data between producers and consumers when there's a disparity in the processing speed or capacity between them. In asynchronous programming, particularly when dealing with streams of data or reactive programming, backpressure ensures that data is processed efficiently without overwhelming the system.
