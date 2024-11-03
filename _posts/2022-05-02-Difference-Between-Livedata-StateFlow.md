@@ -312,6 +312,8 @@ Here are a few reasons why StateFlow does not support multiple subscribers:
 - Intended use case: StateFlow is commonly used to represent UI state in applications such as Android. In such scenarios, having a single observer is often sufficient and aligns well with the unidirectional data flow architecture pattern commonly used in modern UI frameworks.
 
 
+
+
 ### Difference between sharedflow and stateflow : 
 
 SharedFlow and StateFlow are both provided by Kotlin coroutines as part of the kotlinx.coroutines library, and they serve as mechanisms for handling flows of data asynchronously. However, they have some differences in their behavior and usage:
@@ -337,6 +339,15 @@ SharedFlow and StateFlow are both provided by Kotlin coroutines as part of the k
 
 In summary, StateFlow is primarily used for representing and observing mutable state within a single component, while SharedFlow is used for sharing streams of immutable data across multiple consumers. StateFlow is hot and continuously emits values, whereas SharedFlow is cold and only emits values when there are active subscribers. Additionally, SharedFlow provides more flexibility for handling backpressure compared to StateFlow.
 
+**Summary Table**
+
+| **Use Case**                            | **Example**                           | **Why SharedFlow**                                             |
+|-----------------------------------------|---------------------------------------|-----------------------------------------------------------------|
+| **One-time UI Events**                  | Snackbar messages, navigation         | Ensures events are consumed only once, avoids stale events      |
+| **Broadcasting UI Updates**             | Settings changes, theme updates       | Notifies multiple collectors without maintaining a single state |
+| **Real-time Data Streams**              | GPS updates, WebSocket messages       | Emits data as it comes, suitable for real-time notifications    |
+| **UI State Across Multiple Collectors** | Loading spinners across Fragments     | Allows multiple listeners to stay synchronized with minimal setup |
+| **Continuous Streams without Retention**| Sensor data (e.g., location)          | Avoids retaining old data; broadcasts only latest values        |
 
 ### What is backpressure handling ?
 Backpressure handling is a mechanism used to manage the flow of data between producers and consumers when there's a disparity in the processing speed or capacity between them. In asynchronous programming, particularly when dealing with streams of data or reactive programming, backpressure ensures that data is processed efficiently without overwhelming the system.
