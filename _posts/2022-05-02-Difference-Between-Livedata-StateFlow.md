@@ -298,6 +298,19 @@ In this example, we have a `StateFlow` representing a single piece of mutable st
 
 In summary, while both `Flow` and `StateFlow` represent aspects of an application's state, `Flow` is typically used to represent a sequence of immutable values emitted over time, while `StateFlow` is specifically designed to represent a single piece of mutable state that can be observed reactively.
 
+
+| **Use Case**                              | **Example**                          | **Why StateFlow**                                             |
+|-------------------------------------------|--------------------------------------|----------------------------------------------------------------|
+| **UI State Management**                   | Displaying list of items in a View   | Holds the latest data, ensuring UI always has current state    |
+| **Screen Configuration**                  | Managing user settings (e.g., theme) | Persistently stores configuration, making UI reactive to changes |
+| **Form Validation**                       | Enabling/disabling a submit button   | Tracks form data changes, enabling live validation             |
+| **Network Loading States**                | Show loading, success, or error UI   | Maintains a single source of truth for current network state   |
+| **Single ViewModel Data Source**          | Data shown in a RecyclerView         | Ensures data consistency across different components           |
+| **Pagination State Management**           | Handling paginated API calls         | Stores and updates loading, error, and page states             |
+| **Session State**                         | User login status                    | Keeps track of current user session across the app             |
+| **Reactive Navigation**                   | Tab selection in BottomNav bar       | Updates UI components in response to navigation state changes  |
+
+
 ### SharedFlow
 SharedFlow(hot stream) - name itself says it is shared, this flow can be shared by multiple consumers, I mean if multiple collect calls happening on the sharedflow there will be a single flow which will get shared across all the consumers unlike normal flow.
 
