@@ -10,6 +10,21 @@ article_header:
 ### LiveData - Hot Stream 
 In LiveData, data emissions start as soon as an observer is attached. The data flow continues, and if the observer isn’t actively consuming it, it may miss out on some values. Here's an example:
 
+Understanding Active and Inactive Observers in LiveData
+
+Active Observer:
+An observer is considered active when the associated LifecycleOwner (e.g., an Activity or Fragment) is in a started or resumed state.
+In this state, LiveData sends updates to the observer.
+
+Inactive Observer:
+An observer is inactive when the LifecycleOwner is in the paused, stopped, or destroyed state.
+LiveData stops sending updates to inactive observers to avoid unnecessary processing.
+
+What Happens When an Observer Isn’t Actively Consuming?
+- If the observer isn't in an active state (e.g., Fragment is stopped), any data emitted by the LiveData will not be delivered to that observer.
+- Once the observer becomes active again (e.g., Fragment is resumed), it will only receive the latest value stored in the LiveData, not the values emitted while it was inactive.
+
+
 kotlin
 
 ```kotlin
