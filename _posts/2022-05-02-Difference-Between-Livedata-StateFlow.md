@@ -20,9 +20,19 @@ Inactive Observer:
 An observer is inactive when the LifecycleOwner is in the paused, stopped, or destroyed state.
 LiveData stops sending updates to inactive observers to avoid unnecessary processing.
 
+Pure hot streams (like WebSockets, RxJava hot observables, or live event streams) always emit data, regardless of whether there are active subscribers.
+
 What Happens When an Observer Isn’t Actively Consuming?
 - If the observer isn't in an active state (e.g., Fragment is stopped), any data emitted by the LiveData will not be delivered to that observer.
 - Once the observer becomes active again (e.g., Fragment is resumed), it will only receive the latest value stored in the LiveData, not the values emitted while it was inactive.
+
+
+Why LiveData is Still Considered a Hot Stream
+Even with these deviations, LiveData is categorized as a hot stream because:
+
+It persists the last emitted value.
+It emits that value immediately to any observer that becomes active.
+The "data producer" (e.g., the source behind the LiveData) does not restart or get recreated for every new observer, which is a key characteristic of hot streams.
 
 
 kotlin
