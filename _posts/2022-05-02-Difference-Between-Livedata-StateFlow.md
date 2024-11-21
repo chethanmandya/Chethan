@@ -336,6 +336,9 @@ In summary, while both `Flow` and `StateFlow` represent aspects of an applicatio
 | **Reactive Navigation**                   | Tab selection in BottomNav bar       | Updates UI components in response to navigation state changes  |
 
 
+
+
+
 ### SharedFlow
 SharedFlow(hot stream) - name itself says it is shared, this flow can be shared by multiple consumers, I mean if multiple collect calls happening on the sharedflow there will be a single flow which will get shared across all the consumers unlike normal flow.
 
@@ -363,6 +366,19 @@ Here are a few reasons why StateFlow does not support multiple subscribers:
 
 **When to Avoid SharedFlow**
 If you need to keep the last known state, StateFlow may be more suitable because it automatically retains and emits the latest value to any new collectors.
+
+
+**Comparison: StateFlow vs SharedFlow**
+
+| **Feature**                    | **StateFlow**                            | **SharedFlow**                           |
+|--------------------------------|------------------------------------------|------------------------------------------|
+| **Retains Latest Value**        | Always                                   | Only if `replay = 1` or more             |
+| **Replays Multiple Values**     | No                                       | Yes, based on `replay` parameter         |
+| **Initial Value Required**      | Yes                                      | No                                       |
+| **Hot Stream**                  | Yes                                      | Yes                                      |
+| **Lifecycle Awareness**         | No                                       | No                                       |
+| **Thread-Safe**                 | Yes                                      | Yes                                      |
+| **Use Case**                    | Representing a single state (state holder)| Representing events or multiple states   |
 
 
 
